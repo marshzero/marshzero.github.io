@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言论文LSANet看的差不多，对其代码进行分析，看看是怎么实现论文中的模型。   12论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1905.05442代码地址：https:&#x2F;&#x2F;github.com&#x2F;LinZhuoChen&#x2F;LSANet SFE模块pointnet_util.py 12345678910111">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSANet代码分析">
+<meta property="og:url" content="http://example.com/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Yzy&#39;s blog">
+<meta property="og:description" content="前言论文LSANet看的差不多，对其代码进行分析，看看是怎么实现论文中的模型。   12论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1905.05442代码地址：https:&#x2F;&#x2F;github.com&#x2F;LinZhuoChen&#x2F;LSANet SFE模块pointnet_util.py 12345678910111">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152630.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163403.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163416.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152601.png">
+<meta property="article:published_time" content="2020-10-30T07:32:59.000Z">
+<meta property="article:modified_time" content="2020-11-21T08:03:05.599Z">
+<meta property="article:author" content="Yang Zeyu">
+<meta property="article:tag" content="论文阅读">
+<meta property="article:tag" content="点云分割">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152630.png">
+
+<link rel="canonical" href="http://example.com/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>LSANet代码分析 | Yzy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yzy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LSANet代码分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-30 15:32:59" itemprop="dateCreated datePublished" datetime="2020-10-30T15:32:59+08:00">2020-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:03:05" itemprop="dateModified" datetime="2020-11-21T16:03:05+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%82%B9%E4%BA%91/" itemprop="url" rel="index"><span itemprop="name">点云</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文LSANet看的差不多，对其代码进行分析，看看是怎么实现论文中的模型。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1905.05442</span><br><span class="line">代码地址：https:&#x2F;&#x2F;github.com&#x2F;LinZhuoChen&#x2F;LSANet</span><br></pre></td></tr></table></figure>
+<h2 id="SFE模块"><a href="#SFE模块" class="headerlink" title="SFE模块"></a>SFE模块</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152630.png" alt="20201028152630"><br>pointnet_util.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sample_and_group</span>(<span class="params">npoint, radius, nsample, xyz, points, bn, is_training, bn_decay, mlp, knn=<span class="literal">False</span>, use_xyz=<span class="literal">True</span>, xyz_feature=<span class="literal">None</span>, end=<span class="literal">False</span>, use_edge_feature=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Input:</span></span><br><span class="line"><span class="string">        npoint: int32 点的数量</span></span><br><span class="line"><span class="string">        radius: float32 半径</span></span><br><span class="line"><span class="string">        nsample: int32 采样点的数量</span></span><br><span class="line"><span class="string">        xyz: (batch_size, ndataset, 3) TF tensor BxNx3的点的xyz信息</span></span><br><span class="line"><span class="string">        points: (batch_size, ndataset, channel) TF tensor, if None will just use xyz as points BxNxC的点的特征信息，如果为空则用xyz</span></span><br><span class="line"><span class="string">        knn: bool, if True use kNN instead of radius search 如果为True则使用knn替代球查询</span></span><br><span class="line"><span class="string">        use_xyz: bool, if True concat XYZ with local point features, otherwise just use point features</span></span><br><span class="line"><span class="string">        xyz_feature: 上一个SFE即sample_and_group的输出Feature_out(xyz_feature)</span></span><br><span class="line"><span class="string">    Output:</span></span><br><span class="line"><span class="string">        new_xyz: (batch_size, npoint, 3) TF tensor</span></span><br><span class="line"><span class="string">        new_points: (batch_size, npoint, nsample, 3+channel) TF tensor</span></span><br><span class="line"><span class="string">        idx: (batch_size, npoint, nsample) TF tensor, indices of local points as in ndataset points</span></span><br><span class="line"><span class="string">        output_feature: 图中的Feature_sfe</span></span><br><span class="line"><span class="string">        xyz_feature: 图中的Feature_out</span></span><br><span class="line"><span class="string">        grouped_xyz: 图中绿色的BxN&#x27;xKx3 (batch_size, npoint, nsample, 3) TF tensor, normalized point XYZs</span></span><br><span class="line"><span class="string">            (subtracted by seed point XYZ) in local regions</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># new_xyz = (N,Fin)</span></span><br><span class="line">    new_xyz = gather_point(xyz, farthest_point_sample(npoint, xyz))  <span class="comment"># (batch_size, npoint, 3)</span></span><br><span class="line">    <span class="keyword">if</span> knn: <span class="comment">#看用knn还是球查询</span></span><br><span class="line">        _, idx = knn_point(nsample, xyz, new_xyz)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        idx, pts_cnt = query_ball_point(radius, nsample, xyz, new_xyz)</span><br><span class="line">    grouped_xyz = group_point(xyz, idx)  <span class="comment"># (batch_size, npoint, nsample, 3) = (b,N&#x27;,K,3)</span></span><br><span class="line">    grouped_xyz -= tf.tile(tf.expand_dims(new_xyz, <span class="number">2</span>), [<span class="number">1</span>, <span class="number">1</span>, nsample, <span class="number">1</span>])  <span class="comment"># translation normalization</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> points <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        grouped_points = group_point(points, idx)  <span class="comment"># (batch_size, npoint, nsample, channel) = (b,N&#x27;,K,Fin)</span></span><br><span class="line">        <span class="keyword">if</span> use_xyz:</span><br><span class="line">            new_points = tf.concat([grouped_xyz, grouped_points], axis=<span class="number">-1</span>)  <span class="comment"># (batch_size, npoint, nample, 3+channel)</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            new_points = grouped_points</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        new_points = grouped_xyz <span class="comment"># new_points = 拼接特征和坐标的结果 #这里不是SFE</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">############################# 对比pointnet++增加的部分</span></span><br><span class="line">    <span class="comment"># 使用edge特征</span></span><br><span class="line">    <span class="keyword">if</span> use_edge_feature == <span class="literal">False</span>:</span><br><span class="line">        <span class="keyword">return</span> new_xyz, new_points, idx, grouped_xyz</span><br><span class="line">    <span class="comment"># [batch_size, npoint, 1, F]</span></span><br><span class="line">    <span class="keyword">if</span> xyz_feature == <span class="literal">None</span>:</span><br><span class="line">        xyz_feature = xyz</span><br><span class="line"></span><br><span class="line">    xyz_feature = group_point(xyz_feature, idx) <span class="comment"># xyz_feature = (N&#x27;,K,Fin) 若xyz_feature == None所以和下面的edge_feature一样</span></span><br><span class="line">    edge_feature = grouped_xyz <span class="comment"># (batch_size, npoint, nsample, 3) = (N&#x27;,K,3) 图中绿色部分</span></span><br><span class="line">    <span class="keyword">for</span> i, num_out_channel <span class="keyword">in</span> <span class="built_in">enumerate</span>(mlp):</span><br><span class="line">        edge_feature = tf_util.conv2d(edge_feature, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                      padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                      bn=bn, is_training=is_training,</span><br><span class="line">                                      scope=<span class="string">&#x27;xyz_feature_%d&#x27;</span> % (i), bn_decay=bn_decay)</span><br><span class="line">    output_feature = tf.concat([xyz_feature, edge_feature], axis=<span class="number">-1</span>) <span class="comment"># 拼接两个特征，在进行mlp和maxpool</span></span><br><span class="line">    <span class="keyword">if</span> end == <span class="literal">False</span>:</span><br><span class="line">        xyz_feature = tf_util.conv2d(output_feature, mlp[<span class="number">-1</span>], [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                     padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                     bn=bn, is_training=is_training,</span><br><span class="line">                                     scope=<span class="string">&#x27;xyz_feature2&#x27;</span>, bn_decay=bn_decay)</span><br><span class="line">        <span class="comment"># we can try sum and mean</span></span><br><span class="line">        xyz_feature = tf.reduce_max(xyz_feature, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;maxpool&#x27;</span>)</span><br><span class="line">        xyz_feature = tf.squeeze(xyz_feature, [<span class="number">2</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment">############################# output_feature是Feature_sfe，xyz_feature是Feature_out</span></span><br><span class="line">    <span class="keyword">return</span> new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="LSA-layer"><a href="#LSA-layer" class="headerlink" title="LSA layer"></a>LSA layer</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163403.png" alt="20201028163403"><br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163416.png" alt="20201028163416"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="SDWs模块"><a href="#SDWs模块" class="headerlink" title="SDWs模块"></a>SDWs模块</h2><h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><p>LSA layer：在下面代码函数中，会调用SFE的代码即sample_and_group()函数，随之调用LSA layer模块，也就是说LSA_layer()函数包括了SFE和LSA layer两个操作，在model的代码中通过定义多个层数来进行图示的多个layer的操作<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152601.png" alt="20201028152601"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LSA_layer</span>(<span class="params">xyz, points, npoint, radius, nsample, mlp, mlp2, group_all, is_training, bn_decay,</span></span></span><br><span class="line"><span class="function"><span class="params">                          scope, xyz_feature=<span class="literal">None</span>, bn=<span class="literal">True</span>, pooling=<span class="string">&#x27;max&#x27;</span>, knn=<span class="literal">False</span>, use_xyz=<span class="literal">True</span>, use_nchw=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                          end=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; LSA layer</span></span><br><span class="line"><span class="string">        Input:</span></span><br><span class="line"><span class="string">            xyz: (batch_size, ndataset, 3) TF tensor BxNx3的点的xyz信息</span></span><br><span class="line"><span class="string">            points: (batch_size, ndataset, channel) TF tensor BxNxC的点的特征信息，如果为空则用xyz</span></span><br><span class="line"><span class="string">            npoint: int32 -- #points sampled in farthest point sampling 点的数量</span></span><br><span class="line"><span class="string">            radius: float32 -- search radius in local region 采样分组的半径</span></span><br><span class="line"><span class="string">            nsample: int32 -- how many points in each local region 采样点的数量</span></span><br><span class="line"><span class="string">            mlp: list of int32 -- output size for MLP on each point 每个点在mlp中输出的通道大小</span></span><br><span class="line"><span class="string">            mlp2: list of int32 -- output size for MLP on each region 每个局部区域在mlp中输出的通道大小</span></span><br><span class="line"><span class="string">            group_all: bool -- group all points into one PC if set true, OVERRIDE</span></span><br><span class="line"><span class="string">                npoint, radius and nsample settings</span></span><br><span class="line"><span class="string">            is_training: bool -- whether train this LSA layer</span></span><br><span class="line"><span class="string">            bn_decay: float32 -- batch norm decay</span></span><br><span class="line"><span class="string">            scope: scope in tensorflow</span></span><br><span class="line"><span class="string">            xyz_feature: float32 -- feature from SFE 即是Feature_out</span></span><br><span class="line"><span class="string">            use_xyz: bool, if True concat XYZ with local point features, otherwise just use point features</span></span><br><span class="line"><span class="string">            use_nchw: bool, if True, use NCHW data format for conv2d, which is usually faster than NHWC format</span></span><br><span class="line"><span class="string">        Return:</span></span><br><span class="line"><span class="string">            new_xyz: (batch_size, npoint, 3) TF tensor 新的xyz</span></span><br><span class="line"><span class="string">            new_points: (batch_size, npoint, mlp[-1] or mlp2[-1]) TF tensor 新的points</span></span><br><span class="line"><span class="string">            idx: (batch_size, npoint, nsample) int32 -- indices for local regions 局部点的索引</span></span><br><span class="line"><span class="string">            xyz_feature: LSA layer 的Feature_out</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    data_format = <span class="string">&#x27;NCHW&#x27;</span> <span class="keyword">if</span> use_nchw <span class="keyword">else</span> <span class="string">&#x27;NHWC&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(scope) <span class="keyword">as</span> sc:</span><br><span class="line">        <span class="comment"># Sample and Grouping 采样并分组</span></span><br><span class="line">        <span class="keyword">if</span> group_all:</span><br><span class="line">            nsample = xyz.get_shape()[<span class="number">1</span>].value</span><br><span class="line">            new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz = sample_and_group_all(xyz, points, bn, is_training, bn_decay, mlp2, use_xyz, xyz_feature, end, use_edge_feature=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz = sample_and_group(npoint, radius, nsample, xyz, points, bn, is_training, bn_decay, mlp2, knn, use_xyz, xyz_feature, end, use_edge_feature=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># xyz Feature Embedding</span></span><br><span class="line">        <span class="comment"># 这里将output_feature和新点云的信息拼接到一起了 总体架构中的C操作</span></span><br><span class="line">        new_points = tf.concat([new_points, output_feature], axis=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># SDWs模块 </span></span><br><span class="line">        channel = new_points.get_shape()[<span class="number">-1</span>].value</span><br><span class="line">        <span class="comment">## spatial encoder</span></span><br><span class="line">        attention_xyz_1 = tf_util.conv2d(grouped_xyz, <span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         bn=bn, is_training=is_training,</span><br><span class="line">                                         scope=<span class="string">&#x27;xyz_attention_1&#x27;</span>, bn_decay=bn_decay,</span><br><span class="line">                                         data_format=data_format) <span class="comment"># Spi</span></span><br><span class="line">        <span class="comment">## Region Spatial Encoder</span></span><br><span class="line">        attention_xyz_2 = tf_util.conv2d(grouped_xyz, <span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         bn=bn, is_training=is_training,</span><br><span class="line">                                         scope=<span class="string">&#x27;xyz_attention_2&#x27;</span>, bn_decay=bn_decay,</span><br><span class="line">                                         data_format=data_format)</span><br><span class="line">        attention_xyz_2 = tf.reduce_mean(attention_xyz_2, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;meanpool&#x27;</span>)</span><br><span class="line">        attention_xyz_2 = tf.tile(attention_xyz_2, [<span class="number">1</span>, <span class="number">1</span>, nsample, <span class="number">1</span>]) <span class="comment"># Sg</span></span><br><span class="line">        attention_xyz = tf.concat([attention_xyz_1, attention_xyz_2], axis=<span class="number">-1</span>) <span class="comment">#Si</span></span><br><span class="line">        <span class="comment">## shared MLP+MLP_</span></span><br><span class="line">        <span class="keyword">for</span> i, num_out_channel <span class="keyword">in</span> <span class="built_in">enumerate</span>(mlp):</span><br><span class="line">            <span class="comment"># 假设是第一轮循环</span></span><br><span class="line">            <span class="comment">## shared MLP_1(in LSA hierarchical encoding)</span></span><br><span class="line">            new_points = tf_util.conv2d(new_points, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        bn=bn, is_training=is_training,</span><br><span class="line">                                        scope=<span class="string">&#x27;conv%d&#x27;</span> % (i), bn_decay=bn_decay,</span><br><span class="line">                                        data_format=data_format) </span><br><span class="line">            <span class="comment">## shared MLP(in SDWs)</span></span><br><span class="line">            attention_xyz = tf_util.conv2d(attention_xyz, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        bn=bn, is_training=is_training,</span><br><span class="line">                                        scope=<span class="string">&#x27;xyz_attention%d&#x27;</span> % (i), bn_decay=bn_decay,</span><br><span class="line">                                        data_format=data_format, activation_fn=tf.sigmoid)</span><br><span class="line">            <span class="comment"># LSA layer中的X操作，即元素相乘</span></span><br><span class="line">            new_points = tf.multiply(new_points, attention_xyz)</span><br><span class="line">        <span class="comment"># LSA pooling</span></span><br><span class="line">        new_points = tf.reduce_max(new_points, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;maxpool2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        new_points = tf.squeeze(new_points, [<span class="number">2</span>])  <span class="comment"># (batch_size, npoints, mlp2[-1]) # 删掉为1的维度</span></span><br><span class="line">        <span class="comment"># new_points = tf.concat([new_points, xyz_feature], axis=-1)</span></span><br><span class="line">        <span class="keyword">return</span> new_xyz, new_points, idx, xyz_feature</span><br></pre></td></tr></table></figure>
+<h2 id="细节分析"><a href="#细节分析" class="headerlink" title="细节分析"></a>细节分析</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag"># 论文阅读</a>
+              <a href="/tags/%E7%82%B9%E4%BA%91%E5%88%86%E5%89%B2/" rel="tag"># 点云分割</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/28/conda%E5%AE%89%E8%A3%85cv2/" rel="prev" title="conda安装cv2">
+      <i class="fa fa-chevron-left"></i> conda安装cv2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/" rel="next" title="pickel模块学习">
+      pickel模块学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SFE%E6%A8%A1%E5%9D%97"><span class="nav-number">2.</span> <span class="nav-text">SFE模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSA-layer"><span class="nav-number">3.</span> <span class="nav-text">LSA layer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDWs%E6%A8%A1%E5%9D%97"><span class="nav-number">4.</span> <span class="nav-text">SDWs模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">整体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">细节分析</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yang Zeyu</p>
+  <div class="site-description" itemprop="description">打工人，打工魂，打工都是人上人!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yang Zeyu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

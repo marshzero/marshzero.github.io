@@ -157,6 +157,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/21/hexo%E8%B8%A9%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/21/hexo%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">hexo+github搭建博客记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-21 17:59:59 / 修改时间：16:23:12" itemprop="dateCreated datePublished" datetime="2020-11-21T17:59:59+08:00">2020-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="npm安装没反应及RollbackFailedOptional-Verb-Npm-Session错误"><a href="#npm安装没反应及RollbackFailedOptional-Verb-Npm-Session错误" class="headerlink" title="npm安装没反应及RollbackFailedOptional Verb Npm-Session错误"></a>npm安装没反应及RollbackFailedOptional Verb Npm-Session错误</h2><p>Npm安装报错 RollbackFailedOptional Verb Npm-Session<br>设置了cmd、git、npm代理，结果还是报错，最后换了一下源，更换为淘宝的源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zwrsnrt/p/12492482.html">https://www.cnblogs.com/zwrsnrt/p/12492482.html</a></p>
+<h2 id="hexo使用theme无法渲染页面问题"><a href="#hexo使用theme无法渲染页面问题" class="headerlink" title="hexo使用theme无法渲染页面问题"></a>hexo使用theme无法渲染页面问题</h2><p>新版本hexo在使用主题时，生成页面发现无法正常显示，出现以下未渲染成功的源代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;&#39;</span><br></pre></td></tr></table></figure>
+<p>查看显示的代码以及主题目录下的layout模板，发现hexo在新版本使用 Nunjucks 来渲染页面，但是很多主题还是旧版本hexo时编写的，使用的是Swig，所以页面没有正常使用swig渲染好，我们使用以下命令装上swig就好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+<p>参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39898645/article/details/109181736">https://blog.csdn.net/qq_39898645/article/details/109181736</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/p/1210000010636536/read">https://segmentfault.com/p/1210000010636536/read</a></p>
+<h2 id="hexo-Error-Deployer-not-found-git"><a href="#hexo-Error-Deployer-not-found-git" class="headerlink" title="hexo Error Deployer not found: git"></a>hexo Error Deployer not found: git</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201027001028.png" alt="20201027001028"></p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201027001057.png" alt="20201027001057"><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36401046/article/details/52940313">https://blog.csdn.net/weixin_36401046/article/details/52940313</a></p>
+<p>npm install –save hexo-deployer-git</p>
+<h2 id="Template-render-error-unknown-path"><a href="#Template-render-error-unknown-path" class="headerlink" title="Template render error: (unknown path)"></a>Template render error: (unknown path)</h2><p>有两种可能，一种是config.yml中没使用正确的缩进空格，一种是文章中有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;，&#123;% %&#125;</span><br></pre></td></tr></table></figure>
+<p>这种hexo无法转义的字符</p>
+<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="config.yml"></a>config.yml</h3><p>官方的示例如下<br>The error one:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">- hexo- generator-feed</span><br><span class="line">- hexo-generator-sitemap</span><br></pre></td></tr></table></figure>
+<p>The correct one:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">  - hexo-generator-feed</span><br><span class="line">  - hexo-generator-sitemap</span><br></pre></td></tr></table></figure>
+<h3 id="文章有无法转义字符"><a href="#文章有无法转义字符" class="headerlink" title="文章有无法转义字符"></a>文章有无法转义字符</h3><p>将无法转义的句子用代码块括住</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E6%8A%A5%E9%94%99%EF%BC%9AFailed%20to%20mount%20'_dev_sda1'%20%E8%BE%93%E5%85%A5_%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF%20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E6%8A%A5%E9%94%99%EF%BC%9AFailed%20to%20mount%20'_dev_sda1'%20%E8%BE%93%E5%85%A5_%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF%20/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-21 15:59:34" itemprop="dateCreated datePublished" datetime="2020-11-21T15:59:34+08:00">2020-11-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-20 16:28:18" itemprop="dateModified" datetime="2020-11-20T16:28:18+08:00">2020-11-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="移动硬盘报错：Failed-to-mount-‘-dev-sda1’-输入-输出错误"><a href="#移动硬盘报错：Failed-to-mount-‘-dev-sda1’-输入-输出错误" class="headerlink" title="移动硬盘报错：Failed to mount ‘_dev_sda1’_ 输入_输出错误"></a>移动硬盘报错：Failed to mount ‘_dev_sda1’_ 输入_输出错误</h1><p>在终端输入sudo ntfsfix /dev/sda1修复即可</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/20/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -236,7 +388,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;marshzero&quot;</span><br><span class="line">git config --global user.email &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
 <p>生成ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;">&#103;&#105;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#109;</a>，如果出现你的用户名，那就成功了。</p>
+<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#117;&#98;&#46;&#99;&#x6f;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
 <h2 id="hexo-部署到-github"><a href="#hexo-部署到-github" class="headerlink" title="hexo 部署到 github"></a>hexo 部署到 github</h2><p>首先，ssh key肯定要配置好。其次，配置_config.yml中有关deploy的部分：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>使用以下命令生成静态文件</p>
@@ -269,6 +421,353 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;Backup&quot;</span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
 <p>这样就能看到github上有我们要备份的hexo项目啦，<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201120172902.png" alt="20201120172902"><br>使用hexo d是将静态页面备份到github上的master，使用git push origin hexo是将hexo项目文件夹备份到github上的hexo分支。</p>
 <h3 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h3><p>将两个分支的内容下载并合并，安装相应的软件即可（未尝试）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/" class="post-title-link" itemprop="url">pickel打包文件时MemoryError或内存爆炸</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-09 14:48:00" itemprop="dateCreated datePublished" datetime="2020-11-09T14:48:00+08:00">2020-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:05:11" itemprop="dateModified" datetime="2020-11-21T16:05:11+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pyhton/" itemprop="url" rel="index"><span itemprop="name">pyhton</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.codenong.com/28068872/">https://www.codenong.com/28068872/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/chao_1083934282/article/details/88387727">https://blog.csdn.net/chao_1083934282/article/details/88387727</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hlpower/article/details/100765278?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">https://blog.csdn.net/hlpower/article/details/100765278?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">pickel模块学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-09 14:45:00" itemprop="dateCreated datePublished" datetime="2020-11-09T14:45:00+08:00">2020-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:05:36" itemprop="dateModified" datetime="2020-11-21T16:05:36+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pyhton/" itemprop="url" rel="index"><span itemprop="name">pyhton</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Python-api-pickle模块学习"><a href="#Python-api-pickle模块学习" class="headerlink" title="Python-api pickle模块学习"></a>Python-api pickle模块学习</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>python3.9-doc-pickle:<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a><br>在做实验时，可能需要将数据打包成pickle文件，方便后续的读取。pickle是一个python模块，源代码在Lib/pickle.py，可将python对象进行序列化和反序列化。以下内容参考python文档和网上博客。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The pickle module implements binary protocols for serializing and de-serializing a Python object structure. “Pickling” is the process whereby a Python object hierarchy is converted into a byte stream, and “unpickling” is the inverse operation, whereby a byte stream (from a binary file or bytes-like object) is converted back into an object hierarchy. Pickling (and unpickling) is alternatively known as “serialization”, “marshalling,” 1 or “flattening”; however, to avoid confusion, the terms used here are “pickling” and “unpickling”.</span><br></pre></td></tr></table></figure>
+<h2 id="与其他相似库的比较"><a href="#与其他相似库的比较" class="headerlink" title="与其他相似库的比较"></a>与其他相似库的比较</h2><h3 id="与marshal比较"><a href="#与marshal比较" class="headerlink" title="与marshal比较"></a>与marshal比较</h3><p>Python有一个更原始的序列化模块，称为marshal，但通常pickle应该始终是序列化Python对象的首选方式。 marshal存在主要是为了支持Python的.pyc文件。该pickle模块marshal在以下几个重要方面有所不同：</p>
+<ul>
+<li><p>该pickle模块跟踪已序列化的对象，因此以后对同一对象的引用将不会再次序列化。marshal并不这样做。这对于递归对象和对象共享都有影响。递归对象是包含对其自身的引用的对象。marshal无法处理递归对象，尝试使用marsha处理递归对象将使您的Python解释器崩溃。当要序列化的对象层次结构中的不同位置存在对同一对象的多个引用时，就会发生对象共享。 pickle仅将此类对象存储一次，并确保所有其他引用都指向主副本。共享的对象保持共享状态，这对于可变对象非常重要。</p>
+</li>
+<li><p>marshal不能用于序列化用户定义的类及其实例。 pickle可以透明地保存和恢复类实例，但是类定义必须是可导入的，并且与对象存储时位于同一模块中。</p>
+</li>
+<li><p>该marshal序列化格式是不能保证整个Python版本移植。因为它的主要工作是支持 .pyc文件，所以Python实现者保留在需要时以非向后兼容的方式更改序列化格式的权利。pickle选择了兼容的pickle协议，并且如果您的数据越过了唯一的突破性更改语言边界，则pickling和unpickling可以处理Python 2到Python 3类型的差异，则可以确保序列化格式在Python版本之间向后兼容。</p>
+<h3 id="与json比较"><a href="#与json比较" class="headerlink" title="与json比较"></a>与json比较</h3><p>pickle协议和JSON (JavaScript Object Notation)之间有基本的区别:</p>
+</li>
+<li><p>JSON是一种文本序列化格式（虽然大多数时间然后将其编码为utf-8，但它输出unicode文本），而pickle是一种二进制序列化格式；</p>
+</li>
+<li><p>JSON是人类可读的，而pickle则不是；</p>
+</li>
+<li><p>JSON是可互操作的，并且在Python生态系统之外被广泛使用，而pickle是特定于Python的；</p>
+</li>
+<li><p>默认情况下，JSON只能表示Python内置类型的子集，而不能表示自定义类。pickle可以表示大量的Python类型（通过巧妙地使用Python的自省功能，其中的许多会自动实现；可以通过实现特定的对象API解决复杂的情况）；</p>
+</li>
+<li><p>与pickle不同，反序列化不受信任的JSON本身并不会创建代码执行漏洞。</p>
+</li>
+</ul>
+<p>这里也有python的json模块：一个标准的库模块，允许JSON序列化和反序列化。</p>
+<h2 id="Data-stream-format-数据流格式"><a href="#Data-stream-format-数据流格式" class="headerlink" title="Data stream format 数据流格式"></a>Data stream format 数据流格式</h2><p>所使用的数据格式pickle是特定于Python的。这样做的优点是不受外部标准（例如JSON或XDR）的限制（不能表示指针共享）；但是，这意味着非Python程序可能无法重建pickling后的Python对象。</p>
+<p>默认情况下，pickle数据格式使用相对紧凑的二进制表示形式。如果需要最佳的大小特征，则可以有效地压缩pickling的数据。</p>
+<p>该模块pickletools包含用于分析生成的数据流的工具pickle。 pickletools源代码对pickle协议使用的操作码有大量注释。</p>
+<p>当前有6种不同的协议可用于pickling。使用的协议越高，读取生成的pickle所需的Python版本越新。</p>
+<ul>
+<li><p>Protocol version 0是原始的“人类可读”协议，并且与Python的早期版本向后兼容。</p>
+</li>
+<li><p>Protocol version 1是旧的二进制格式，也与Python的早期版本兼容。</p>
+</li>
+<li><p>Protocol version 2是在Python 2.3中引入的。它提供了更高效的新型es酸洗。参考PEP 307，了解有关协议2带来的改进的信息。</p>
+</li>
+<li><p>Protocol version 3是在Python 3.0中添加的。它具有对bytes对象的显式支持， 并且不能被Python 2.x unpickled。这是Python 3.0–3.7中的默认协议。</p>
+</li>
+<li><p>Protocol version 4是在Python 3.4中添加的。它增加了对非常大的对象的支持，pickling更多种类的对象以及一些数据格式优化。从Python 3.8开始，它是默认协议。参考PEP 3154，获取有关协议4带来的改进的信息。</p>
+</li>
+<li><p>Protocol version 5已在Python 3.8中添加。它增加了对带外数据的支持和对带内数据的加速。参考PEP 574，了解有关协议5带来的改进的信息。</p>
+</li>
+</ul>
+<h2 id="Module-Interface-模块接口"><a href="#Module-Interface-模块接口" class="headerlink" title="Module Interface 模块接口"></a>Module Interface 模块接口</h2><p>pickle提供以下属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pickle.HIGHEST_PROTOCOL</span><br><span class="line">An integer, the highest protocol version available. This value can be passed as a protocol value to functions dump() and dumps() as well as the Pickler constructor.</span><br><span class="line"></span><br><span class="line">pickle.DEFAULT_PROTOCOL</span><br><span class="line">An integer, the default protocol version used for pickling. May be less than HIGHEST_PROTOCOL. Currently the default protocol is 4, first introduced in Python 3.4 and incompatible with previous versions.</span><br><span class="line"></span><br><span class="line">Changed in version 3.0: The default protocol is 3.</span><br><span class="line"></span><br><span class="line">Changed in version 3.8: The default protocol is 4.</span><br></pre></td></tr></table></figure>
+
+<p>The pickle module provides the following functions to make the pickling process more convenient:</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">LSANet代码分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-30 15:32:59" itemprop="dateCreated datePublished" datetime="2020-10-30T15:32:59+08:00">2020-10-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:03:05" itemprop="dateModified" datetime="2020-11-21T16:03:05+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%82%B9%E4%BA%91/" itemprop="url" rel="index"><span itemprop="name">点云</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>论文LSANet看的差不多，对其代码进行分析，看看是怎么实现论文中的模型。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">论文地址：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1905.05442</span><br><span class="line">代码地址：https:&#x2F;&#x2F;github.com&#x2F;LinZhuoChen&#x2F;LSANet</span><br></pre></td></tr></table></figure>
+<h2 id="SFE模块"><a href="#SFE模块" class="headerlink" title="SFE模块"></a>SFE模块</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152630.png" alt="20201028152630"><br>pointnet_util.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sample_and_group</span>(<span class="params">npoint, radius, nsample, xyz, points, bn, is_training, bn_decay, mlp, knn=<span class="literal">False</span>, use_xyz=<span class="literal">True</span>, xyz_feature=<span class="literal">None</span>, end=<span class="literal">False</span>, use_edge_feature=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    Input:</span></span><br><span class="line"><span class="string">        npoint: int32 点的数量</span></span><br><span class="line"><span class="string">        radius: float32 半径</span></span><br><span class="line"><span class="string">        nsample: int32 采样点的数量</span></span><br><span class="line"><span class="string">        xyz: (batch_size, ndataset, 3) TF tensor BxNx3的点的xyz信息</span></span><br><span class="line"><span class="string">        points: (batch_size, ndataset, channel) TF tensor, if None will just use xyz as points BxNxC的点的特征信息，如果为空则用xyz</span></span><br><span class="line"><span class="string">        knn: bool, if True use kNN instead of radius search 如果为True则使用knn替代球查询</span></span><br><span class="line"><span class="string">        use_xyz: bool, if True concat XYZ with local point features, otherwise just use point features</span></span><br><span class="line"><span class="string">        xyz_feature: 上一个SFE即sample_and_group的输出Feature_out(xyz_feature)</span></span><br><span class="line"><span class="string">    Output:</span></span><br><span class="line"><span class="string">        new_xyz: (batch_size, npoint, 3) TF tensor</span></span><br><span class="line"><span class="string">        new_points: (batch_size, npoint, nsample, 3+channel) TF tensor</span></span><br><span class="line"><span class="string">        idx: (batch_size, npoint, nsample) TF tensor, indices of local points as in ndataset points</span></span><br><span class="line"><span class="string">        output_feature: 图中的Feature_sfe</span></span><br><span class="line"><span class="string">        xyz_feature: 图中的Feature_out</span></span><br><span class="line"><span class="string">        grouped_xyz: 图中绿色的BxN&#x27;xKx3 (batch_size, npoint, nsample, 3) TF tensor, normalized point XYZs</span></span><br><span class="line"><span class="string">            (subtracted by seed point XYZ) in local regions</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># new_xyz = (N,Fin)</span></span><br><span class="line">    new_xyz = gather_point(xyz, farthest_point_sample(npoint, xyz))  <span class="comment"># (batch_size, npoint, 3)</span></span><br><span class="line">    <span class="keyword">if</span> knn: <span class="comment">#看用knn还是球查询</span></span><br><span class="line">        _, idx = knn_point(nsample, xyz, new_xyz)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        idx, pts_cnt = query_ball_point(radius, nsample, xyz, new_xyz)</span><br><span class="line">    grouped_xyz = group_point(xyz, idx)  <span class="comment"># (batch_size, npoint, nsample, 3) = (b,N&#x27;,K,3)</span></span><br><span class="line">    grouped_xyz -= tf.tile(tf.expand_dims(new_xyz, <span class="number">2</span>), [<span class="number">1</span>, <span class="number">1</span>, nsample, <span class="number">1</span>])  <span class="comment"># translation normalization</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> points <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        grouped_points = group_point(points, idx)  <span class="comment"># (batch_size, npoint, nsample, channel) = (b,N&#x27;,K,Fin)</span></span><br><span class="line">        <span class="keyword">if</span> use_xyz:</span><br><span class="line">            new_points = tf.concat([grouped_xyz, grouped_points], axis=<span class="number">-1</span>)  <span class="comment"># (batch_size, npoint, nample, 3+channel)</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            new_points = grouped_points</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        new_points = grouped_xyz <span class="comment"># new_points = 拼接特征和坐标的结果 #这里不是SFE</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">############################# 对比pointnet++增加的部分</span></span><br><span class="line">    <span class="comment"># 使用edge特征</span></span><br><span class="line">    <span class="keyword">if</span> use_edge_feature == <span class="literal">False</span>:</span><br><span class="line">        <span class="keyword">return</span> new_xyz, new_points, idx, grouped_xyz</span><br><span class="line">    <span class="comment"># [batch_size, npoint, 1, F]</span></span><br><span class="line">    <span class="keyword">if</span> xyz_feature == <span class="literal">None</span>:</span><br><span class="line">        xyz_feature = xyz</span><br><span class="line"></span><br><span class="line">    xyz_feature = group_point(xyz_feature, idx) <span class="comment"># xyz_feature = (N&#x27;,K,Fin) 若xyz_feature == None所以和下面的edge_feature一样</span></span><br><span class="line">    edge_feature = grouped_xyz <span class="comment"># (batch_size, npoint, nsample, 3) = (N&#x27;,K,3) 图中绿色部分</span></span><br><span class="line">    <span class="keyword">for</span> i, num_out_channel <span class="keyword">in</span> <span class="built_in">enumerate</span>(mlp):</span><br><span class="line">        edge_feature = tf_util.conv2d(edge_feature, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                      padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                      bn=bn, is_training=is_training,</span><br><span class="line">                                      scope=<span class="string">&#x27;xyz_feature_%d&#x27;</span> % (i), bn_decay=bn_decay)</span><br><span class="line">    output_feature = tf.concat([xyz_feature, edge_feature], axis=<span class="number">-1</span>) <span class="comment"># 拼接两个特征，在进行mlp和maxpool</span></span><br><span class="line">    <span class="keyword">if</span> end == <span class="literal">False</span>:</span><br><span class="line">        xyz_feature = tf_util.conv2d(output_feature, mlp[<span class="number">-1</span>], [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                     padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                     bn=bn, is_training=is_training,</span><br><span class="line">                                     scope=<span class="string">&#x27;xyz_feature2&#x27;</span>, bn_decay=bn_decay)</span><br><span class="line">        <span class="comment"># we can try sum and mean</span></span><br><span class="line">        xyz_feature = tf.reduce_max(xyz_feature, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;maxpool&#x27;</span>)</span><br><span class="line">        xyz_feature = tf.squeeze(xyz_feature, [<span class="number">2</span>])</span><br><span class="line">    </span><br><span class="line">    <span class="comment">############################# output_feature是Feature_sfe，xyz_feature是Feature_out</span></span><br><span class="line">    <span class="keyword">return</span> new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="LSA-layer"><a href="#LSA-layer" class="headerlink" title="LSA layer"></a>LSA layer</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163403.png" alt="20201028163403"><br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028163416.png" alt="20201028163416"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="SDWs模块"><a href="#SDWs模块" class="headerlink" title="SDWs模块"></a>SDWs模块</h2><h2 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h2><p>LSA layer：在下面代码函数中，会调用SFE的代码即sample_and_group()函数，随之调用LSA layer模块，也就是说LSA_layer()函数包括了SFE和LSA layer两个操作，在model的代码中通过定义多个层数来进行图示的多个layer的操作<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201028152601.png" alt="20201028152601"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">LSA_layer</span>(<span class="params">xyz, points, npoint, radius, nsample, mlp, mlp2, group_all, is_training, bn_decay,</span></span></span><br><span class="line"><span class="function"><span class="params">                          scope, xyz_feature=<span class="literal">None</span>, bn=<span class="literal">True</span>, pooling=<span class="string">&#x27;max&#x27;</span>, knn=<span class="literal">False</span>, use_xyz=<span class="literal">True</span>, use_nchw=<span class="literal">False</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                          end=<span class="literal">False</span></span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27; LSA layer</span></span><br><span class="line"><span class="string">        Input:</span></span><br><span class="line"><span class="string">            xyz: (batch_size, ndataset, 3) TF tensor BxNx3的点的xyz信息</span></span><br><span class="line"><span class="string">            points: (batch_size, ndataset, channel) TF tensor BxNxC的点的特征信息，如果为空则用xyz</span></span><br><span class="line"><span class="string">            npoint: int32 -- #points sampled in farthest point sampling 点的数量</span></span><br><span class="line"><span class="string">            radius: float32 -- search radius in local region 采样分组的半径</span></span><br><span class="line"><span class="string">            nsample: int32 -- how many points in each local region 采样点的数量</span></span><br><span class="line"><span class="string">            mlp: list of int32 -- output size for MLP on each point 每个点在mlp中输出的通道大小</span></span><br><span class="line"><span class="string">            mlp2: list of int32 -- output size for MLP on each region 每个局部区域在mlp中输出的通道大小</span></span><br><span class="line"><span class="string">            group_all: bool -- group all points into one PC if set true, OVERRIDE</span></span><br><span class="line"><span class="string">                npoint, radius and nsample settings</span></span><br><span class="line"><span class="string">            is_training: bool -- whether train this LSA layer</span></span><br><span class="line"><span class="string">            bn_decay: float32 -- batch norm decay</span></span><br><span class="line"><span class="string">            scope: scope in tensorflow</span></span><br><span class="line"><span class="string">            xyz_feature: float32 -- feature from SFE 即是Feature_out</span></span><br><span class="line"><span class="string">            use_xyz: bool, if True concat XYZ with local point features, otherwise just use point features</span></span><br><span class="line"><span class="string">            use_nchw: bool, if True, use NCHW data format for conv2d, which is usually faster than NHWC format</span></span><br><span class="line"><span class="string">        Return:</span></span><br><span class="line"><span class="string">            new_xyz: (batch_size, npoint, 3) TF tensor 新的xyz</span></span><br><span class="line"><span class="string">            new_points: (batch_size, npoint, mlp[-1] or mlp2[-1]) TF tensor 新的points</span></span><br><span class="line"><span class="string">            idx: (batch_size, npoint, nsample) int32 -- indices for local regions 局部点的索引</span></span><br><span class="line"><span class="string">            xyz_feature: LSA layer 的Feature_out</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    data_format = <span class="string">&#x27;NCHW&#x27;</span> <span class="keyword">if</span> use_nchw <span class="keyword">else</span> <span class="string">&#x27;NHWC&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(scope) <span class="keyword">as</span> sc:</span><br><span class="line">        <span class="comment"># Sample and Grouping 采样并分组</span></span><br><span class="line">        <span class="keyword">if</span> group_all:</span><br><span class="line">            nsample = xyz.get_shape()[<span class="number">1</span>].value</span><br><span class="line">            new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz = sample_and_group_all(xyz, points, bn, is_training, bn_decay, mlp2, use_xyz, xyz_feature, end, use_edge_feature=<span class="literal">True</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            new_xyz, new_points, idx, output_feature, xyz_feature, grouped_xyz = sample_and_group(npoint, radius, nsample, xyz, points, bn, is_training, bn_decay, mlp2, knn, use_xyz, xyz_feature, end, use_edge_feature=<span class="literal">True</span>)</span><br><span class="line">        <span class="comment"># xyz Feature Embedding</span></span><br><span class="line">        <span class="comment"># 这里将output_feature和新点云的信息拼接到一起了 总体架构中的C操作</span></span><br><span class="line">        new_points = tf.concat([new_points, output_feature], axis=<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># SDWs模块 </span></span><br><span class="line">        channel = new_points.get_shape()[<span class="number">-1</span>].value</span><br><span class="line">        <span class="comment">## spatial encoder</span></span><br><span class="line">        attention_xyz_1 = tf_util.conv2d(grouped_xyz, <span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         bn=bn, is_training=is_training,</span><br><span class="line">                                         scope=<span class="string">&#x27;xyz_attention_1&#x27;</span>, bn_decay=bn_decay,</span><br><span class="line">                                         data_format=data_format) <span class="comment"># Spi</span></span><br><span class="line">        <span class="comment">## Region Spatial Encoder</span></span><br><span class="line">        attention_xyz_2 = tf_util.conv2d(grouped_xyz, <span class="number">64</span>, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                         bn=bn, is_training=is_training,</span><br><span class="line">                                         scope=<span class="string">&#x27;xyz_attention_2&#x27;</span>, bn_decay=bn_decay,</span><br><span class="line">                                         data_format=data_format)</span><br><span class="line">        attention_xyz_2 = tf.reduce_mean(attention_xyz_2, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;meanpool&#x27;</span>)</span><br><span class="line">        attention_xyz_2 = tf.tile(attention_xyz_2, [<span class="number">1</span>, <span class="number">1</span>, nsample, <span class="number">1</span>]) <span class="comment"># Sg</span></span><br><span class="line">        attention_xyz = tf.concat([attention_xyz_1, attention_xyz_2], axis=<span class="number">-1</span>) <span class="comment">#Si</span></span><br><span class="line">        <span class="comment">## shared MLP+MLP_</span></span><br><span class="line">        <span class="keyword">for</span> i, num_out_channel <span class="keyword">in</span> <span class="built_in">enumerate</span>(mlp):</span><br><span class="line">            <span class="comment"># 假设是第一轮循环</span></span><br><span class="line">            <span class="comment">## shared MLP_1(in LSA hierarchical encoding)</span></span><br><span class="line">            new_points = tf_util.conv2d(new_points, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        bn=bn, is_training=is_training,</span><br><span class="line">                                        scope=<span class="string">&#x27;conv%d&#x27;</span> % (i), bn_decay=bn_decay,</span><br><span class="line">                                        data_format=data_format) </span><br><span class="line">            <span class="comment">## shared MLP(in SDWs)</span></span><br><span class="line">            attention_xyz = tf_util.conv2d(attention_xyz, num_out_channel, [<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        padding=<span class="string">&#x27;VALID&#x27;</span>, stride=[<span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">                                        bn=bn, is_training=is_training,</span><br><span class="line">                                        scope=<span class="string">&#x27;xyz_attention%d&#x27;</span> % (i), bn_decay=bn_decay,</span><br><span class="line">                                        data_format=data_format, activation_fn=tf.sigmoid)</span><br><span class="line">            <span class="comment"># LSA layer中的X操作，即元素相乘</span></span><br><span class="line">            new_points = tf.multiply(new_points, attention_xyz)</span><br><span class="line">        <span class="comment"># LSA pooling</span></span><br><span class="line">        new_points = tf.reduce_max(new_points, axis=[<span class="number">2</span>], keep_dims=<span class="literal">True</span>, name=<span class="string">&#x27;maxpool2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        new_points = tf.squeeze(new_points, [<span class="number">2</span>])  <span class="comment"># (batch_size, npoints, mlp2[-1]) # 删掉为1的维度</span></span><br><span class="line">        <span class="comment"># new_points = tf.concat([new_points, xyz_feature], axis=-1)</span></span><br><span class="line">        <span class="keyword">return</span> new_xyz, new_points, idx, xyz_feature</span><br></pre></td></tr></table></figure>
+<h2 id="细节分析"><a href="#细节分析" class="headerlink" title="细节分析"></a>细节分析</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/28/conda%E5%AE%89%E8%A3%85cv2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/28/conda%E5%AE%89%E8%A3%85cv2/" class="post-title-link" itemprop="url">conda安装cv2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-28 10:31:59" itemprop="dateCreated datePublished" datetime="2020-10-28T10:31:59+08:00">2020-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:00:32" itemprop="dateModified" datetime="2020-11-21T16:00:32+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>conda install –channel <a target="_blank" rel="noopener" href="https://conda.anaconda.org/menpo">https://conda.anaconda.org/menpo</a> opencv</p>
 
       
     </div>
@@ -599,411 +1098,11 @@ property list uchar int vertex_indices</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/ubuntu%E5%9B%A0%E7%A1%AC%E7%9B%98%E6%8C%82%E8%BD%BD%E8%BF%9B%E5%85%A5Emergency-mode%E7%B4%A7%E6%80%A5%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/27/ubuntu%E5%9B%A0%E7%A1%AC%E7%9B%98%E6%8C%82%E8%BD%BD%E8%BF%9B%E5%85%A5Emergency-mode%E7%B4%A7%E6%80%A5%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">ubuntu因硬盘挂载进入Emergency_mode紧急模式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-27 00:00:04" itemprop="dateCreated datePublished" datetime="2020-10-27T00:00:04+08:00">2020-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-03 16:31:05" itemprop="dateModified" datetime="2020-11-03T16:31:05+08:00">2020-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>由于ubuntu系统中加的新硬盘没有配置好，fstab中没写好，然后强制关机了，导致开机没有挂载上新硬盘，于是进入了Emergency mode紧急模式，无法正常启动。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>在紧急模式下输入回车进入命令行，使用以下命令查看开机日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl -xb</span><br></pre></td></tr></table></figure>
-<p>发现Failed mount on XXX的红色报错信息，根据报错信息提示，发现是无法以ext3的形式挂载上新硬盘（图没拍，大家意会一下）</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>修改fstab中的挂载信息。首先查看硬盘的UUID</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/blkid.png" alt="blkid"></p>
-<h3 id="5-编辑系统挂载配置文件-etc-fstab"><a href="#5-编辑系统挂载配置文件-etc-fstab" class="headerlink" title="5.编辑系统挂载配置文件/etc/fstab"></a>5.编辑系统挂载配置文件/etc/fstab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit etc&#x2F;fstab</span><br></pre></td></tr></table></figure>
-<p>将新硬盘挂载信息从ext3改成ex4，并将/dev/sda改为UUID（一定按图示，第一项使用UUID，不要用/dev/sda这种目录形式，第二项挂载点，第三项ext4，写成ext3我就进不去系统，后面是0 2）<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/addfastab.png" alt="addfastab"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/ubuntu%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/ubuntu%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/" class="post-title-link" itemprop="url">ubuntu加新硬盘</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 23:58:45" itemprop="dateCreated datePublished" datetime="2020-10-26T23:58:45+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-03 16:30:03" itemprop="dateModified" datetime="2020-11-03T16:30:03+08:00">2020-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ubuntu加装新机械硬盘并配置挂载"><a href="#ubuntu加装新机械硬盘并配置挂载" class="headerlink" title="ubuntu加装新机械硬盘并配置挂载"></a>ubuntu加装新机械硬盘并配置挂载</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为最近要用的数据集太大了，所以加了一块2T的机械硬盘，专门用来放这个数据集。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>将机械硬盘装到电脑上，注意机箱的打开方式…一般硬盘放在侧面，和电源在一个面，需要电源的供电线和传输数据的SATA线。</p>
-<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><h3 id="1-开机进入ubuntu系统，使用以下命令查看硬盘情况："><a href="#1-开机进入ubuntu系统，使用以下命令查看硬盘情况：" class="headerlink" title="1.开机进入ubuntu系统，使用以下命令查看硬盘情况："></a>1.开机进入ubuntu系统，使用以下命令查看硬盘情况：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  fdisk  -l</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/fdisk.png" alt="fdisk"></p>
-<h3 id="2-可以看到-dev-sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）："><a href="#2-可以看到-dev-sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）：" class="headerlink" title="2.可以看到/dev/sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）："></a>2.可以看到/dev/sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sda</span><br></pre></td></tr></table></figure>
-<p>或者使用ubuntu已经安装的disk软件进行图形化界面操作（推荐用命令）</p>
-<h3 id="3-我的硬盘是直接在-media-datadisk有了挂载点，没有的话就自己创建挂载点"><a href="#3-我的硬盘是直接在-media-datadisk有了挂载点，没有的话就自己创建挂载点" class="headerlink" title="3.我的硬盘是直接在/media/datadisk有了挂载点，没有的话就自己创建挂载点"></a>3.我的硬盘是直接在/media/datadisk有了挂载点，没有的话就自己创建挂载点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;home&#x2F;sda1 #示例用，后续代码不用此挂载点</span><br></pre></td></tr></table></figure>
-<h3 id="4-查看硬盘的UUID"><a href="#4-查看硬盘的UUID" class="headerlink" title="4.查看硬盘的UUID"></a>4.查看硬盘的UUID</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/blkid.png" alt="blkid"></p>
-<h3 id="5-编辑系统挂载配置文件-etc-fstab"><a href="#5-编辑系统挂载配置文件-etc-fstab" class="headerlink" title="5.编辑系统挂载配置文件/etc/fstab"></a>5.编辑系统挂载配置文件/etc/fstab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit etc&#x2F;fstab</span><br></pre></td></tr></table></figure>
-<p>添加新的挂载项，这样开机就挂载了（一定按图示，第一项使用UUID，不要用/dev/sda这种目录形式，第二项挂载点，第三项ext4，写成ext3我就进不去系统，后面是0 2）<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/addfastab.png" alt="addfastab"></p>
-<h3 id="6-修改硬盘权限"><a href="#6-修改硬盘权限" class="headerlink" title="6.修改硬盘权限"></a>6.修改硬盘权限</h3><p>其中lab是用户，777是完全权限，这一步骤是可以让非root用户对新硬盘有操作权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R lab &#x2F;media&#x2F;datadisk</span><br><span class="line">sudo chmod -R 777 &#x2F;media&#x2F;datadisk</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/Ubuntu18-04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%89%E8%A3%85%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/Ubuntu18-04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%89%E8%A3%85%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/" class="post-title-link" itemprop="url">Ubuntu18.04双系统安装与安装后要做的事</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 23:57:15" itemprop="dateCreated datePublished" datetime="2020-10-26T23:57:15+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-03 16:31:19" itemprop="dateModified" datetime="2020-11-03T16:31:19+08:00">2020-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Ubuntu18-04双系统安装及遇到的坑"><a href="#Ubuntu18-04双系统安装及遇到的坑" class="headerlink" title="Ubuntu18.04双系统安装及遇到的坑"></a>Ubuntu18.04双系统安装及遇到的坑</h2><h4 id="一、制作U盘安装盘"><a href="#一、制作U盘安装盘" class="headerlink" title="一、制作U盘安装盘"></a>一、制作U盘安装盘</h4><p>网上的教程大多是使用UltraISO(软碟通)来将iso镜像写入U盘。我的软碟通在写入时提示“设备忙”，于是尝试了网上的解决方法：关闭管家、插拔U盘、避免iso文件在U盘内存储，还是提示“设备忙”，于是转用rufus来制作安装盘，完成。<br>我的笔记本主板是uefi启动，C盘128G SSD，D盘1T HDD。我把D盘分出200G的空闲空间安装ubuntu18.04，使用刻录好的U盘启动，安装时选择D盘分出的空闲200G空间。分区把200G分为192G（主分区，挂载”/“）和8G（逻辑分区，交换空间，我的电脑内存8G），这样分区适用于linux新手，可以避免ubuntu的boot分区后续空间不足的尴尬。<br>安装完成后在我的bios界面就会有两个启动项：win10和ubuntu。ubuntu的启动界面也可以进入win10</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d5cfe62531">Ubuntu U盘启动工具Rufus制作(详细步骤)
-</a></p>
-</blockquote>
-<h4 id="二、安装好Ubuntu后要做的事"><a href="#二、安装好Ubuntu后要做的事" class="headerlink" title="二、安装好Ubuntu后要做的事"></a>二、安装好Ubuntu后要做的事</h4><h5 id="1-先删几个软件"><a href="#1-先删几个软件" class="headerlink" title="1.先删几个软件"></a>1.先删几个软件</h5><h6 id="删除libreoffice"><a href="#删除libreoffice" class="headerlink" title="删除libreoffice"></a>删除libreoffice</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove libreoffice-common  </span><br></pre></td></tr></table></figure>
-<h6 id="删除Amazon的链接"><a href="#删除Amazon的链接" class="headerlink" title="删除Amazon的链接"></a>删除Amazon的链接</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove unity-webapps-common  </span><br></pre></td></tr></table></figure>
-<h6 id="删掉基本不用的自带软件（用的时候再装也来得及）"><a href="#删掉基本不用的自带软件（用的时候再装也来得及）" class="headerlink" title="删掉基本不用的自带软件（用的时候再装也来得及）"></a>删掉基本不用的自带软件（用的时候再装也来得及）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove onboard deja-dup  </span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36498339/article/details/78642033">安装Ubuntu 16.04后要做的事
-</a></p>
-</blockquote>
-<h5 id="2-更换源"><a href="#2-更换源" class="headerlink" title="2.更换源"></a>2.更换源</h5><p>更换源这次我发现了一个新的方法，就是在软件更新中选择最佳服务器，我的是中科大的源，软件更新自己就把源更换了，很nice。<br>老方法就是手动更改源：<br>先备份sources.list</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources.list.bak</span><br></pre></td></tr></table></figure>
-<p>然后将sources.list中的源更换成国内源</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
-<p>随便选以下一种源就行了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#阿里源</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">##中科大源</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">163源</span><br><span class="line">##163源</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">清华源</span><br><span class="line">##清华源</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
-<p>换完了系统更新一下，第二个命令可能会很慢</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
-
-<h4 id="三、换成N卡驱动"><a href="#三、换成N卡驱动" class="headerlink" title="三、换成N卡驱动"></a>三、换成N卡驱动</h4><p>我的笔记本是MX150，在软件更新中点击附加驱动，选择383的专有驱动应用更改（忘了版本了），然后会让你输入一个密码，这个在后面开机时会用到，而且在开机时好像电脑的security boot要关掉。<br>下载好驱动，应用更改好了，重启电脑，会出现一个蓝色背景的界面 perform mok management<br>正确的做法如下： </p>
-<ol>
-<li>当进入蓝色背景的界面perform mok management 后，选择 enroll mok , </li>
-<li>进入enroll mok 界面，选择 continue , </li>
-<li>进入enroll the key 界面，选择 yes , </li>
-<li>接下来输入你在安装驱动时输入的密码， </li>
-<li>之后会跳到蓝色背景的界面perform mok management 选择第一个 reboot<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bush_nj/article/details/80850937">配有 Nvidia 显卡的笔记本安装 ubuntu18.04 所遇到的问题与解决
-</a></p>
-</blockquote>
-</li>
-</ol>
-<h4 id="四、美化"><a href="#四、美化" class="headerlink" title="四、美化"></a>四、美化</h4><h5 id="1-安装Gnome-tweak-tool"><a href="#1-安装Gnome-tweak-tool" class="headerlink" title="1.安装Gnome-tweak-tool"></a>1.安装Gnome-tweak-tool</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gnome-tweak-tool</span><br><span class="line">sudo apt-get install gnome-shell-extensions</span><br></pre></td></tr></table></figure>
-<p>安装的软件名为“优化”，打开“优化”在扩展选项卡中开启</p>
-<ul>
-<li>Dash to dock：可以对Dock栏进行自定义</li>
-<li>User Theme：使shell主题（即顶部菜单栏）使用桌面主题</li>
-<li>Blyr：使Overview有模糊背景效果</li>
-<li>Coverflow Alt-Tab：应用程序切换效果，类似Mac OS X</li>
-<li>NetSpeed：推荐，显示网速</li>
-<li>TopIcons Plus：推荐，后台程序显示在托盘（使deepin-wine的程序显示在托盘，必装）</li>
-</ul>
-<h5 id="2-安装vimix主题和图标"><a href="#2-安装vimix主题和图标" class="headerlink" title="2.安装vimix主题和图标"></a>2.安装vimix主题和图标</h5><p>Github链接：<a target="_blank" rel="noopener" href="https://github.com/vinceliuice/vimix-gtk-themes">vimix桌面主题</a>和<a target="_blank" rel="noopener" href="https://github.com/vinceliuice/vimix-icon-theme">vimix图标</a>。进入Github下载文件，主题解压到/usr/share/themes目录下，图标解压到/usr/share/icons目录下。在终端中分别执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo .&#x2F;Vimix-installer</span><br><span class="line">&#x2F;&#x2F;即执行下图所示脚本，用来安装vimix的一组主题，根据提示完成安装即可</span><br><span class="line">sudo .&#x2F;Installer.sh</span><br><span class="line">&#x2F;&#x2F;同上安装主题</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28869927/article/details/80917997">【Linux】Ubuntu 18.04桌面美化</a></p>
-</blockquote>
-<h5 id="3-点击图标最小化"><a href="#3-点击图标最小化" class="headerlink" title="3.点击图标最小化"></a>3.点击图标最小化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings set org.gnome.shell.extensions.dash-to-dock click-action &#39;minimize&#39;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4bd2d9b1af41">不美翻怎么开发!Ubuntu 16.04 LTS深度美化!(2017年度定稿版)
-</a></p>
-</blockquote>
-<h4 id="五、安装常用软件"><a href="#五、安装常用软件" class="headerlink" title="五、安装常用软件"></a>五、安装常用软件</h4><h5 id="1-安装shadowsocks-qt5"><a href="#1-安装shadowsocks-qt5" class="headerlink" title="1.安装shadowsocks-qt5"></a>1.安装shadowsocks-qt5</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:hzwhuang&#x2F;ss-qt5</span><br></pre></td></tr></table></figure>
-<p>加入这个源后安装会报错，因为这个源没有18.04的源，修改文件中的版本即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;hzwhuang-ubuntu-ss-qt5-bionic.list</span><br><span class="line">sudo vim hzwhuang-ubuntu-ss-qt5-bionic.list</span><br></pre></td></tr></table></figure>
-<p>将文件修改为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;ppa.launchpad.net&#x2F;hzwhuang&#x2F;ss-qt5&#x2F;ubuntu xenial main</span><br><span class="line"># deb-src http:&#x2F;&#x2F;ppa.launchpad.net&#x2F;hzwhuang&#x2F;ss-qt5&#x2F;ubuntu bionic main</span><br></pre></td></tr></table></figure>
-<p>然后安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a912952381/article/details/81172971">Ubuntu18.04 安装ss-qt5 缺少依赖文件</a></p>
-</blockquote>
-<h5 id="2-安装wps"><a href="#2-安装wps" class="headerlink" title="2.安装wps"></a>2.安装wps</h5><p>在wps官网下载linux的deb安装包，下载依赖<a target="_blank" rel="noopener" href="http://kr.archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb">libpng12-0</a><br>安装libpng12-0</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i libpng12-0*.deb</span><br></pre></td></tr></table></figure>
-<p>安装wps</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i wps*.deb</span><br></pre></td></tr></table></figure>
-<p>若出现错误，或者没有安装成功，使用如下命令修复</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -f</span><br></pre></td></tr></table></figure>
-<p>至此，wps已经安装成功。但是由于Linux版权原因，WPS缺少字体，故我们要安装WPS所需要的字体。首先下载<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QJbyRDP7yu7F3pryKgdrYQ">WPS字体</a>，然后解压。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;usr&#x2F;share&#x2F;fonts&#x2F;WPS-Fonts       #新建wps字体存储文件夹</span><br><span class="line">cd ~&#x2F;Downloads     #进入下载好的字体目录</span><br><span class="line">sudo apt-get install unzip  #安装zip解压软件</span><br><span class="line">sudo unzip wps_symbol_fonts.zip -d &#x2F;usr&#x2F;share&#x2F;fonts&#x2F;WPS-Fonts&#x2F;  #解压字体到指定文件夹</span><br><span class="line">sudo mkfontscale    #生成字体索引</span><br><span class="line">sudo mkfontdir      #生成字体索引</span><br><span class="line">sudo fc-cache       #更新字体缓存</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">Ubuntu18.04 安装后应该做的事（更新中）
-</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/tydyz/article/details/74991048">Linux for Ubuntu 解决WPS安装缺少libpng12-0的问题</a></p>
-</blockquote>
-<h5 id="3-安装截图软件Shutter"><a href="#3-安装截图软件Shutter" class="headerlink" title="3.安装截图软件Shutter"></a>3.安装截图软件Shutter</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install shutter    #安装shutter</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">编辑按钮变灰色</a></p>
-<h5 id="4-安装google-chrome"><a href="#4-安装google-chrome" class="headerlink" title="4.安装google chrome"></a>4.安装google chrome</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;longhr&#x2F;ubuntu1604hub&#x2F;master&#x2F;linux_signing_key.pub | sudo apt-key add</span><br><span class="line">sudo sh -c &#39;echo &quot;deb [ arch&#x3D;amd64 ] http:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;chrome&#x2F;deb&#x2F; stable main&quot; &gt;&gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google-chrome.list&#39;</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
-
-<h5 id="5-安装搜狗输入法"><a href="#5-安装搜狗输入法" class="headerlink" title="5.安装搜狗输入法"></a>5.安装搜狗输入法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install fcitx-bin      #安装fcitx-bin</span><br><span class="line">sudo apt-get update --fix-missing   #修复fcitx-bin安装失败的情况</span><br><span class="line">sudo apt-get install fcitx-bin      #重新安装fcitx-bin</span><br><span class="line">sudo apt-get install fcitx-table    #安装fcitx-table</span><br></pre></td></tr></table></figure>
-<p>在sougou拼音官网下载deb包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i sogoupinyin*.deb       #安装搜狗拼音</span><br><span class="line">sudo apt-get install -f             #修复搜狗拼音安装的错误</span><br><span class="line">sudo dpkg -i sogoupinyin*.deb       #重新安装搜狗拼音</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">Ubuntu18.04 安装后应该做的事（更新中）</a></p>
-</blockquote>
-<h5 id="6-安装网易云音乐"><a href="#6-安装网易云音乐" class="headerlink" title="6.安装网易云音乐"></a>6.安装网易云音乐</h5><p>在官网下载deb包，安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i netease-cloud-music*.deb</span><br></pre></td></tr></table></figure>
-
-<h5 id="7-安装QQ、微信、迅雷、百度网盘"><a href="#7-安装QQ、微信、迅雷、百度网盘" class="headerlink" title="7.安装QQ、微信、迅雷、百度网盘"></a>7.安装QQ、微信、迅雷、百度网盘</h5><p><a target="_blank" rel="noopener" href="https://github.com/wszqkzqk/deepin-wine-ubuntu">Deepin wine for Ubuntu</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 11:20:31" itemprop="dateCreated datePublished" datetime="2020-10-26T11:20:31+08:00">2020-10-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1068,20 +1167,20 @@ property list uchar int vertex_indices</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

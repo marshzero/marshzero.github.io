@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Python-api pickle模块学习前言python3.9-doc-pickle:https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;pickle.html在做实验时，可能需要将数据打包成pickle文件，方便后续的读取。pickle是一个python模块，源代码在Lib&#x2F;pickle.py，可将python对象进行序列化和反序列化。以下内容参考python文档和网上博客。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pickel模块学习">
+<meta property="og:url" content="http://example.com/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Yzy&#39;s blog">
+<meta property="og:description" content="Python-api pickle模块学习前言python3.9-doc-pickle:https:&#x2F;&#x2F;docs.python.org&#x2F;3&#x2F;library&#x2F;pickle.html在做实验时，可能需要将数据打包成pickle文件，方便后续的读取。pickle是一个python模块，源代码在Lib&#x2F;pickle.py，可将python对象进行序列化和反序列化。以下内容参考python文档和网上博客。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-09T06:45:00.000Z">
+<meta property="article:modified_time" content="2020-11-21T08:05:36.777Z">
+<meta property="article:author" content="Yang Zeyu">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="pickel">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>pickel模块学习 | Yzy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yzy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pickel模块学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-09 14:45:00" itemprop="dateCreated datePublished" datetime="2020-11-09T14:45:00+08:00">2020-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-21 16:05:36" itemprop="dateModified" datetime="2020-11-21T16:05:36+08:00">2020-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/pyhton/" itemprop="url" rel="index"><span itemprop="name">pyhton</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Python-api-pickle模块学习"><a href="#Python-api-pickle模块学习" class="headerlink" title="Python-api pickle模块学习"></a>Python-api pickle模块学习</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>python3.9-doc-pickle:<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a><br>在做实验时，可能需要将数据打包成pickle文件，方便后续的读取。pickle是一个python模块，源代码在Lib/pickle.py，可将python对象进行序列化和反序列化。以下内容参考python文档和网上博客。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The pickle module implements binary protocols for serializing and de-serializing a Python object structure. “Pickling” is the process whereby a Python object hierarchy is converted into a byte stream, and “unpickling” is the inverse operation, whereby a byte stream (from a binary file or bytes-like object) is converted back into an object hierarchy. Pickling (and unpickling) is alternatively known as “serialization”, “marshalling,” 1 or “flattening”; however, to avoid confusion, the terms used here are “pickling” and “unpickling”.</span><br></pre></td></tr></table></figure>
+<h2 id="与其他相似库的比较"><a href="#与其他相似库的比较" class="headerlink" title="与其他相似库的比较"></a>与其他相似库的比较</h2><h3 id="与marshal比较"><a href="#与marshal比较" class="headerlink" title="与marshal比较"></a>与marshal比较</h3><p>Python有一个更原始的序列化模块，称为marshal，但通常pickle应该始终是序列化Python对象的首选方式。 marshal存在主要是为了支持Python的.pyc文件。该pickle模块marshal在以下几个重要方面有所不同：</p>
+<ul>
+<li><p>该pickle模块跟踪已序列化的对象，因此以后对同一对象的引用将不会再次序列化。marshal并不这样做。这对于递归对象和对象共享都有影响。递归对象是包含对其自身的引用的对象。marshal无法处理递归对象，尝试使用marsha处理递归对象将使您的Python解释器崩溃。当要序列化的对象层次结构中的不同位置存在对同一对象的多个引用时，就会发生对象共享。 pickle仅将此类对象存储一次，并确保所有其他引用都指向主副本。共享的对象保持共享状态，这对于可变对象非常重要。</p>
+</li>
+<li><p>marshal不能用于序列化用户定义的类及其实例。 pickle可以透明地保存和恢复类实例，但是类定义必须是可导入的，并且与对象存储时位于同一模块中。</p>
+</li>
+<li><p>该marshal序列化格式是不能保证整个Python版本移植。因为它的主要工作是支持 .pyc文件，所以Python实现者保留在需要时以非向后兼容的方式更改序列化格式的权利。pickle选择了兼容的pickle协议，并且如果您的数据越过了唯一的突破性更改语言边界，则pickling和unpickling可以处理Python 2到Python 3类型的差异，则可以确保序列化格式在Python版本之间向后兼容。</p>
+<h3 id="与json比较"><a href="#与json比较" class="headerlink" title="与json比较"></a>与json比较</h3><p>pickle协议和JSON (JavaScript Object Notation)之间有基本的区别:</p>
+</li>
+<li><p>JSON是一种文本序列化格式（虽然大多数时间然后将其编码为utf-8，但它输出unicode文本），而pickle是一种二进制序列化格式；</p>
+</li>
+<li><p>JSON是人类可读的，而pickle则不是；</p>
+</li>
+<li><p>JSON是可互操作的，并且在Python生态系统之外被广泛使用，而pickle是特定于Python的；</p>
+</li>
+<li><p>默认情况下，JSON只能表示Python内置类型的子集，而不能表示自定义类。pickle可以表示大量的Python类型（通过巧妙地使用Python的自省功能，其中的许多会自动实现；可以通过实现特定的对象API解决复杂的情况）；</p>
+</li>
+<li><p>与pickle不同，反序列化不受信任的JSON本身并不会创建代码执行漏洞。</p>
+</li>
+</ul>
+<p>这里也有python的json模块：一个标准的库模块，允许JSON序列化和反序列化。</p>
+<h2 id="Data-stream-format-数据流格式"><a href="#Data-stream-format-数据流格式" class="headerlink" title="Data stream format 数据流格式"></a>Data stream format 数据流格式</h2><p>所使用的数据格式pickle是特定于Python的。这样做的优点是不受外部标准（例如JSON或XDR）的限制（不能表示指针共享）；但是，这意味着非Python程序可能无法重建pickling后的Python对象。</p>
+<p>默认情况下，pickle数据格式使用相对紧凑的二进制表示形式。如果需要最佳的大小特征，则可以有效地压缩pickling的数据。</p>
+<p>该模块pickletools包含用于分析生成的数据流的工具pickle。 pickletools源代码对pickle协议使用的操作码有大量注释。</p>
+<p>当前有6种不同的协议可用于pickling。使用的协议越高，读取生成的pickle所需的Python版本越新。</p>
+<ul>
+<li><p>Protocol version 0是原始的“人类可读”协议，并且与Python的早期版本向后兼容。</p>
+</li>
+<li><p>Protocol version 1是旧的二进制格式，也与Python的早期版本兼容。</p>
+</li>
+<li><p>Protocol version 2是在Python 2.3中引入的。它提供了更高效的新型es酸洗。参考PEP 307，了解有关协议2带来的改进的信息。</p>
+</li>
+<li><p>Protocol version 3是在Python 3.0中添加的。它具有对bytes对象的显式支持， 并且不能被Python 2.x unpickled。这是Python 3.0–3.7中的默认协议。</p>
+</li>
+<li><p>Protocol version 4是在Python 3.4中添加的。它增加了对非常大的对象的支持，pickling更多种类的对象以及一些数据格式优化。从Python 3.8开始，它是默认协议。参考PEP 3154，获取有关协议4带来的改进的信息。</p>
+</li>
+<li><p>Protocol version 5已在Python 3.8中添加。它增加了对带外数据的支持和对带内数据的加速。参考PEP 574，了解有关协议5带来的改进的信息。</p>
+</li>
+</ul>
+<h2 id="Module-Interface-模块接口"><a href="#Module-Interface-模块接口" class="headerlink" title="Module Interface 模块接口"></a>Module Interface 模块接口</h2><p>pickle提供以下属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pickle.HIGHEST_PROTOCOL</span><br><span class="line">An integer, the highest protocol version available. This value can be passed as a protocol value to functions dump() and dumps() as well as the Pickler constructor.</span><br><span class="line"></span><br><span class="line">pickle.DEFAULT_PROTOCOL</span><br><span class="line">An integer, the default protocol version used for pickling. May be less than HIGHEST_PROTOCOL. Currently the default protocol is 4, first introduced in Python 3.4 and incompatible with previous versions.</span><br><span class="line"></span><br><span class="line">Changed in version 3.0: The default protocol is 3.</span><br><span class="line"></span><br><span class="line">Changed in version 3.8: The default protocol is 4.</span><br></pre></td></tr></table></figure>
+
+<p>The pickle module provides the following functions to make the pickling process more convenient:</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/pickel/" rel="tag"># pickel</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/30/LSANet%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/" rel="prev" title="LSANet代码分析">
+      <i class="fa fa-chevron-left"></i> LSANet代码分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/" rel="next" title="pickel打包文件时MemoryError或内存爆炸">
+      pickel打包文件时MemoryError或内存爆炸 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python-api-pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">Python-api pickle模块学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E7%9B%B8%E4%BC%BC%E5%BA%93%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.</span> <span class="nav-text">与其他相似库的比较</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Emarshal%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">与marshal比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8Ejson%E6%AF%94%E8%BE%83"><span class="nav-number">1.3.2.</span> <span class="nav-text">与json比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-stream-format-%E6%95%B0%E6%8D%AE%E6%B5%81%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.4.</span> <span class="nav-text">Data stream format 数据流格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Module-Interface-%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.5.</span> <span class="nav-text">Module Interface 模块接口</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yang Zeyu</p>
+  <div class="site-description" itemprop="description">打工人，打工魂，打工都是人上人!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yang Zeyu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
