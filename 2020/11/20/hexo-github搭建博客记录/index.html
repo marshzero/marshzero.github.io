@@ -246,7 +246,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;marshzero&quot;</span><br><span class="line">git config --global user.email &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
 <p>生成ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
+<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;</a>，如果出现你的用户名，那就成功了。</p>
 <h2 id="hexo-部署到-github"><a href="#hexo-部署到-github" class="headerlink" title="hexo 部署到 github"></a>hexo 部署到 github</h2><p>首先，ssh key肯定要配置好。其次，配置_config.yml中有关deploy的部分：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>使用以下命令生成静态文件</p>
@@ -302,8 +302,8 @@
       <i class="fa fa-chevron-left"></i> pickel打包文件时MemoryError或内存爆炸
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E6%8A%A5%E9%94%99%EF%BC%9AFailed%20to%20mount%20'_dev_sda1'%20%E8%BE%93%E5%85%A5_%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF%20/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
+    <a href="/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%20Failed%20to%20mount%20%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF/" rel="next" title="移动硬盘 Failed to mount 输入输出错误">
+      移动硬盘 Failed to mount 输入输出错误 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
