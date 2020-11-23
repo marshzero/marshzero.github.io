@@ -182,7 +182,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-23 16:59:30 / 修改时间：16:59:50" itemprop="dateCreated datePublished" datetime="2020-11-23T16:59:30+08:00">2020-11-23</time>
+              <time title="创建时间：2020-11-23 16:59:30 / 修改时间：17:04:29" itemprop="dateCreated datePublished" datetime="2020-11-23T16:59:30+08:00">2020-11-23</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,6 +212,14 @@ D:\6_code\pycharm
 D:\6_code\pycharm
 D:/6_code/pycharm
 D://6_code//pycharm</code></pre>
+<h2 id="os-path-dirname-file"><a href="#os-path-dirname-file" class="headerlink" title="os.path.dirname(file)"></a>os.path.dirname(<strong>file</strong>)</h2><p>os.path.dirname(<strong>file</strong>)返回脚本的路径，但是需要注意一下几点:</p>
+<p>1、必须是实际存在的.py文件，如果在命令行执行，则会引发异常NameError: name ‘<strong>file</strong>‘ is not defined</p>
+<p>2、在运行的时候如果输入完整的执行的路径，则返回.py文件的全路径如：</p>
+<p>python c:/test/test.py 则返回路径 c:/test ，如果是python test.py 则返回空</p>
+<p>3、结合os.path.abspath用，效果会好，如果大家看过一些python架构的代码的话，会发现经常有这样的组合</p>
+<p>os.path.dirname(os.path.abspath(<strong>file</strong>)),os.path.abspath(<strong>file</strong>)返回的是.py文件的绝对路径</p>
+<p>这就是os.path.dirname(<strong>file</strong>)的用法，其主要总结起来有:<br>1、不要已命令行的形式来进行os.path.dirname(<strong>file</strong>)这种形式来使用这个函数</p>
+<p>2、结合os.path.abspath()使用</p>
 <h2 id="os-path-abspath"><a href="#os-path-abspath" class="headerlink" title="os.path.abspath"></a>os.path.abspath</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># os.path.abspath 返回绝对路径</span></span><br><span class="line">abs_dir = os.path.abspath(os.path.dirname(<span class="string">&quot;D://6_code//pycharm/download.py&quot;</span>))</span><br><span class="line">print(abs_dir)</span><br><span class="line">abs2_dir = os.path.abspath(<span class="string">&quot;D://6_code//pycharm/download.py&quot;</span>)</span><br><span class="line">print(abs2_dir)</span><br></pre></td></tr></table></figure>
 <pre><code>out:
 D:\6_code\pycharm
@@ -630,7 +638,7 @@ D:\6_code</code></pre>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;marshzero&quot;</span><br><span class="line">git config --global user.email &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
 <p>生成ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#x74;&#x40;&#103;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
+<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#103;&#x69;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
 <h2 id="hexo-部署到-github"><a href="#hexo-部署到-github" class="headerlink" title="hexo 部署到 github"></a>hexo 部署到 github</h2><p>首先，ssh key肯定要配置好。其次，配置_config.yml中有关deploy的部分：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>使用以下命令生成静态文件</p>
