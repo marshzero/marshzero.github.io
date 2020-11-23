@@ -157,6 +157,123 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/ply%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/27/ply%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">ply格式文件介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-27 09:51:24" itemprop="dateCreated datePublished" datetime="2020-10-27T09:51:24+08:00">2020-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-03 16:32:14" itemprop="dateModified" datetime="2020-11-03T16:32:14+08:00">2020-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%82%B9%E4%BA%91/" itemprop="url" rel="index"><span itemprop="name">点云</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ply文件介绍"><a href="#ply文件介绍" class="headerlink" title="ply文件介绍"></a>ply文件介绍</h2><p>PLY是一种三维mesh模型数据格式，全名为多边形档案（Polygon File Format）或 斯坦福三角形档案（Stanford Triangle Format）。 </p>
+<p>该格式主要用以储存立体扫描结果的三维数值，透过多边形片面的集合描述三维物体，与其他格式相较之下这是较为简单的方法。它可以储存的资讯包含颜色、透明度、表面法向量、材质座标与资料可信度，并能对多边形的正反两面设定不同的属性。</p>
+<p>在档案内容的储存上PLY有两种版本，分别是纯文字（ASCII）版本与二元码（binary）版本，其差异在储存时是否以ASCII编码表示元素资讯。<br>ply文件的基本格式如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">This is the structure of a typical PLY file:</span><br><span class="line"></span><br><span class="line">  Header</span><br><span class="line">  Vertex List</span><br><span class="line">  Face List</span><br><span class="line">  (lists of other elements)</span><br></pre></td></tr></table></figure>
+<p>从ply到end_header是头部，element可以有多个property，例如vertex可以有xyz三个property。ply示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">ply</span><br><span class="line">format ascii 1.0           &#123; ascii&#x2F;binary, 编码类型 &#125;</span><br><span class="line">comment made by Greg Turk  &#123; comments keyword specified, like all lines &#125;</span><br><span class="line">comment this file is a cube</span><br><span class="line">element vertex 8           &#123; 定义 &quot;vertex&quot; 元素, 8 代表这个文件有八个顶点信息 &#125;</span><br><span class="line">property float x           &#123; vertex contains float &quot;x&quot; coordinate &#125;</span><br><span class="line">property float y           &#123; y coordinate is also a vertex property &#125;</span><br><span class="line">property float z           &#123; z coordinate, too &#125;</span><br><span class="line">element face 6             &#123; 定义 &quot;face&quot; 元素, 6 代表这个文件有六个面信息 &#125;</span><br><span class="line">property list uchar int vertex_index &#123; &quot;vertex_indices&quot; is a list of ints &#125;</span><br><span class="line">end_header                 &#123; delimits the end of the header &#125;</span><br><span class="line">0 0 0                      &#123; start of vertex list &#125;</span><br><span class="line">0 0 1</span><br><span class="line">0 1 1</span><br><span class="line">0 1 0</span><br><span class="line">1 0 0</span><br><span class="line">1 0 1</span><br><span class="line">1 1 1</span><br><span class="line">1 1 0</span><br><span class="line">4 0 1 2 3                  &#123; start of face list &#125;</span><br><span class="line">4 7 6 5 4</span><br><span class="line">4 0 4 5 1</span><br><span class="line">4 1 5 6 2</span><br><span class="line">4 2 6 7 3</span><br><span class="line">4 3 7 4 0</span><br></pre></td></tr></table></figure>
+
+<p>这里是一个对ply文件的解释<br><a target="_blank" rel="noopener" href="http://paulbourke.net/dataformats/ply/">http://paulbourke.net/dataformats/ply/</a><br>这里有一个ply文件的示例<br><a target="_blank" rel="noopener" href="http://paulbourke.net/dataformats/ply/example1.ply">http://paulbourke.net/dataformats/ply/example1.ply</a></p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> plyfile <span class="keyword">import</span> PlyData</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<p>使用plydata.read读取ply文件，可以看到ply_data是头部信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ply_data = PlyData.read(<span class="string">&#x27;../repo/bun_zipper.ply&#x27;</span>)</span><br><span class="line">print(ply_data)</span><br></pre></td></tr></table></figure>
+<pre><code># 输出
+ply
+format ascii 1.0
+comment zipper output
+element vertex 35947
+property float x
+property float y
+property float z
+property float confidence
+property float intensity
+element face 69451
+property list uchar int vertex_indices
+end_header</code></pre>
+<p>读取顶点信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vertex = ply_data[<span class="string">&#x27;vertex&#x27;</span>]</span><br><span class="line">print(vertex)</span><br></pre></td></tr></table></figure>
+<p>可以看到输出的是顶点vertex及它的property的信息  </p>
+<pre><code># 输出
+element vertex 35947
+property float x
+property float y
+property float z
+property float confidence
+property float intensity</code></pre>
+<p>读取面的信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">face = ply_data[<span class="string">&#x27;face&#x27;</span>]</span><br><span class="line">print(face)</span><br></pre></td></tr></table></figure>
+<pre><code># 输出
+element face 69451
+property list uchar int vertex_indices</code></pre>
+<p>将三个坐标合在一起并输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = np.asarray(vertex[<span class="string">&#x27;x&#x27;</span>])</span><br><span class="line">y = np.asarray(vertex[<span class="string">&#x27;y&#x27;</span>])</span><br><span class="line">z = np.asarray(vertex[<span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">points = np.stack([x, y, z], axis=<span class="number">1</span>)</span><br><span class="line">print(x.shape)</span><br><span class="line">print(points.shape)</span><br></pre></td></tr></table></figure>
+<pre><code>#输出
+(35947,)
+(35947, 3)</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/Terminal%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -770,14 +887,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

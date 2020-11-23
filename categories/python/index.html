@@ -20,21 +20,17 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="https:&#x2F;&#x2F;www.codenong.com&#x2F;28068872&#x2F;https:&#x2F;&#x2F;blog.csdn.net&#x2F;chao_1083934282&#x2F;article&#x2F;details&#x2F;88387727https:&#x2F;&#x2F;blog.csdn.net&#x2F;hlpower&#x2F;article&#x2F;details&#x2F;100765278?utm_medium&#x3D;distribute.pc_relevant_t0.none-task-b">
-<meta property="og:type" content="article">
-<meta property="og:title" content="pickel打包文件时MemoryError或内存爆炸">
-<meta property="og:url" content="http://example.com/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/index.html">
+  <meta name="description" content="打工人，打工魂，打工都是人上人!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yzy&#39;s blog">
+<meta property="og:url" content="http://example.com/categories/python/index.html">
 <meta property="og:site_name" content="Yzy&#39;s blog">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.codenong.com&#x2F;28068872&#x2F;https:&#x2F;&#x2F;blog.csdn.net&#x2F;chao_1083934282&#x2F;article&#x2F;details&#x2F;88387727https:&#x2F;&#x2F;blog.csdn.net&#x2F;hlpower&#x2F;article&#x2F;details&#x2F;100765278?utm_medium&#x3D;distribute.pc_relevant_t0.none-task-b">
+<meta property="og:description" content="打工人，打工魂，打工都是人上人!">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-09T06:48:00.000Z">
-<meta property="article:modified_time" content="2020-11-21T08:05:11.722Z">
 <meta property="article:author" content="Yang Zeyu">
-<meta property="article:tag" content="python">
-<meta property="article:tag" content="pickel">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/">
+<link rel="canonical" href="http://example.com/categories/python/">
 
 
 <script id="page-configurations">
@@ -42,12 +38,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>pickel打包文件时MemoryError或内存爆炸 | Yzy's blog</title>
+  <title>分类: python | Yzy's blog</title>
   
 
 
@@ -155,99 +151,51 @@
         <div class="content-wrap">
           
 
-          <div class="content post posts-expand">
+          <div class="content category">
             
 
-    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/pickel%E6%89%93%E5%8C%85%E6%96%87%E4%BB%B6%E6%97%B6MemoryError%E6%88%96%E5%86%85%E5%AD%98%E7%88%86%E7%82%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          pickel打包文件时MemoryError或内存爆炸
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-09 14:48:00" itemprop="dateCreated datePublished" datetime="2020-11-09T14:48:00+08:00">2020-11-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-21 16:05:11" itemprop="dateModified" datetime="2020-11-21T16:05:11+08:00">2020-11-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/pyhton/" itemprop="url" rel="index"><span itemprop="name">pyhton</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h2 class="collection-header">python
+          <small>分类</small>
+        </h2>
+      </div>
 
       
-        <p><a target="_blank" rel="noopener" href="https://www.codenong.com/28068872/">https://www.codenong.com/28068872/</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/chao_1083934282/article/details/88387727">https://blog.csdn.net/chao_1083934282/article/details/88387727</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hlpower/article/details/100765278?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">https://blog.csdn.net/hlpower/article/details/100765278?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param</a></p>
-
+    <div class="collection-year">
+      <span class="collection-header">2020</span>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/python/" rel="tag"># python</a>
-              <a href="/tags/pickel/" rel="tag"># pickel</a>
-          </div>
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-11-23T16:27:15+08:00"
+              content="2020-11-23">
+          11-23
+        </time>
+      </div>
 
-        
+      <div class="post-title">
+          <a class="post-title-link" href="/2020/11/23/python%20glob%E6%A8%A1%E5%9D%97/" itemprop="url">
+            <span itemprop="name">python glob用法</span>
+          </a>
+      </div>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/" rel="prev" title="pickel模块学习">
-      <i class="fa fa-chevron-left"></i> pickel模块学习
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/11/20/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95/" rel="next" title="hexo+github搭建博客记录">
-      hexo+github搭建博客记录 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
+  
+
   
 
 
