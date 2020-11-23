@@ -157,6 +157,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/python%20os.parh%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/23/python%20os.parh%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">python os.path模块</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-23 16:59:30 / 修改时间：16:59:50" itemprop="dateCreated datePublished" datetime="2020-11-23T16:59:30+08:00">2020-11-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="python-os-path用法"><a href="#python-os-path用法" class="headerlink" title="python os.path用法"></a>python os.path用法</h1><h2 id="导入方法"><a href="#导入方法" class="headerlink" title="导入方法"></a>导入方法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+<h2 id="os-path-dirname"><a href="#os-path-dirname" class="headerlink" title="os.path.dirname"></a>os.path.dirname</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># os.path.dirname 返回文件路径，不包括文件名</span></span><br><span class="line">file1_dir = os.path.dirname(<span class="string">&quot;D:\\6_code\pycharm\download.py&quot;</span>)</span><br><span class="line">file2_dir = os.path.dirname(<span class="string">&quot;D:\\6_code\\pycharm\\download.py&quot;</span>)</span><br><span class="line">file3_dir = os.path.dirname(<span class="string">&quot;D:/6_code/pycharm/download.py&quot;</span>)</span><br><span class="line">file4_dir = os.path.dirname(<span class="string">&quot;D://6_code//pycharm//download.py&quot;</span>)</span><br><span class="line">print(file1_dir)</span><br><span class="line">print(file2_dir)</span><br><span class="line">print(file3_dir)</span><br><span class="line">print(file4_dir)</span><br></pre></td></tr></table></figure>
+<pre><code>out:
+D:\6_code\pycharm
+D:\6_code\pycharm
+D:/6_code/pycharm
+D://6_code//pycharm</code></pre>
+<h2 id="os-path-abspath"><a href="#os-path-abspath" class="headerlink" title="os.path.abspath"></a>os.path.abspath</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># os.path.abspath 返回绝对路径</span></span><br><span class="line">abs_dir = os.path.abspath(os.path.dirname(<span class="string">&quot;D://6_code//pycharm/download.py&quot;</span>))</span><br><span class="line">print(abs_dir)</span><br><span class="line">abs2_dir = os.path.abspath(<span class="string">&quot;D://6_code//pycharm/download.py&quot;</span>)</span><br><span class="line">print(abs2_dir)</span><br></pre></td></tr></table></figure>
+<pre><code>out:
+D:\6_code\pycharm
+D:\6_code\pycharm\download.py</code></pre>
+<h2 id="返回上一层目录"><a href="#返回上一层目录" class="headerlink" title="返回上一层目录"></a>返回上一层目录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在路径后加上&#x27;/..’相当于返回上一层目录</span></span><br><span class="line">test = os.path.dirname(<span class="string">&quot;D://6_code//pycharm/download-scannet.py&quot;</span>) + <span class="string">&#x27;/..&#x27;</span></span><br><span class="line">test1 = os.path.abspath(os.path.dirname(<span class="string">&quot;D://6_code//pycharm/download-scannet.py&quot;</span>) + <span class="string">&#x27;/..&#x27;</span>)</span><br><span class="line">print(test)</span><br><span class="line">print(test1)</span><br></pre></td></tr></table></figure>
+<pre><code>out:
+D://6_code//pycharm/..
+D:\6_code</code></pre>
+<h2 id="os-path-split"><a href="#os-path-split" class="headerlink" title="os.path.split"></a>os.path.split</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># os.path.split将路径和文件分开</span></span><br><span class="line">file_split = osp.split(<span class="string">&#x27;D://6_code//pycharm/download-scannet.py&#x27;</span>)</span><br><span class="line">print(file_split)</span><br><span class="line"><span class="comment"># os.path.splitext将文件及路径和扩展名分开</span></span><br><span class="line">file_splitext = osp.splitext(<span class="string">&#x27;D://6_code//pycharm/download-scannet.py&#x27;</span>)</span><br><span class="line">print(file_splitext)</span><br></pre></td></tr></table></figure>
+<pre><code>out:
+(&#39;D://6_code//pycharm&#39;, &#39;download-scannet.py&#39;)
+(&#39;D://6_code//pycharm/download-scannet&#39;, &#39;.py&#39;)</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/python%20glob%E6%A8%A1%E5%9D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -940,121 +1026,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/ubuntu%E4%BD%BF%E7%94%A8ss%E6%88%96ssr%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/27/ubuntu%E4%BD%BF%E7%94%A8ss%E6%88%96ssr%E4%B8%8E%E9%85%8D%E7%BD%AE%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86/" class="post-title-link" itemprop="url">ubuntu使用ss或ssr与配置全局代理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-27 15:27:31" itemprop="dateCreated datePublished" datetime="2020-10-27T15:27:31+08:00">2020-10-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-03 16:31:01" itemprop="dateModified" datetime="2020-11-03T16:31:01+08:00">2020-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近要下载一个很大的数据集，然而国内的网访问只有几十k/s，没办法只能用小飞机了。下载数据集的是一个python脚本，那只能配置全局代理了。</p>
-<h2 id="安装小飞机"><a href="#安装小飞机" class="headerlink" title="安装小飞机"></a>安装小飞机</h2><h3 id="1-安装shadowsocks"><a href="#1-安装shadowsocks" class="headerlink" title="1. 安装shadowsocks"></a>1. 安装shadowsocks</h3><p>网址：<a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks">https://github.com/shadowsocks/shadowsocks</a><br>从官网下载软件，并使用自己的账号进行配置。<br>配置/etc/shadowsocks.json(没有就新建一个)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;代理服务器IP&quot;,</span><br><span class="line">    &quot;server_port&quot;:代理服务器ss服务端口,</span><br><span class="line">    &quot;password&quot;:&quot;密码&quot;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;加密类型&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>启动服务(本地的用sslocal，不用ssserver)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sslocal -c &#x2F;etc&#x2F;shadowsocks.json</span><br></pre></td></tr></table></figure>
-
-<p>这时配置系统代理为127.0.0.1:8080即可科学上网</p>
-<h3 id="2-安装shadowsocksR"><a href="#2-安装shadowsocksR" class="headerlink" title="2. 安装shadowsocksR"></a>2. 安装shadowsocksR</h3><p>网址：<a target="_blank" rel="noopener" href="https://github.com/qingshuisiyuan/electron-ssr-backup">https://github.com/qingshuisiyuan/electron-ssr-backup</a><br>根据以上网址安装并配置，并使用命令启动，在图形化界面配置账号信息</p>
-<h2 id="配置全局代理"><a href="#配置全局代理" class="headerlink" title="配置全局代理"></a>配置全局代理</h2><p>Terminal只支持http、https协议，而ShadowSocks使用的是socks协议，ssr同理。我们可以使用Privoxy来将http和socks相互转换。<br>首先，使用下面的命令安装Privoxy：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install privoxy</span><br></pre></td></tr></table></figure>
-
-<p>安装完毕后，打开Privoxy的配置文件/etc/privoxy/config:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit &#x2F;etc&#x2F;privoxy&#x2F;config</span><br></pre></td></tr></table></figure>
-
-<p>第一步定位到4.1. listen-address 这一段，找到监听的端口，我的是在第783行：<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/IMG_4309.JPG" alt="IMG_4309"><br>可以看到端口一般都是8118。<br>接着找到5.2. forward-socks4, forward-socks4a, forward-socks5 and forward-socks5t这一节，加上如下配置(图中是ssr的配置):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forward-socks5 &#x2F; 127.0.0.1:1080 .</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/IMG_4310.JPG" alt="IMG_4310"></p>
-<p>保存后，重启一下Privoxy:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo &#x2F;etc&#x2F;init.d&#x2F;privoxy restart</span><br></pre></td></tr></table></figure>
-
-<p>接着配置终端的环境，打开终端配置文件:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>在末尾追加下面代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy&#x3D;&quot;127.0.0.1:8118&quot;</span><br><span class="line">export https_proxy&#x3D;&quot;127.0.0.1:8118&quot;</span><br></pre></td></tr></table></figure>
-
-<p>保存文件后，重启终端或者执行下面的命令重新读取配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>使用下面代码来测试穿墙是否成功：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http:&#x2F;&#x2F;www.google.com</span><br></pre></td></tr></table></figure>
-
-<p>穿墙成功，接着将Privoxy添加到开机启动，在/etc/rc.local中添加如下命令，注意在exit 0之前:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo &#x2F;etc&#x2F;init.d&#x2F;privoxy start</span><br></pre></td></tr></table></figure>
-
-<p>在/etc/profile的末尾添加如下两句:</p>
-<pre><code>export http_proxy=&quot;127.0.0.1:8118&quot;
-export https_proxy=&quot;127.0.0.1:8118&quot;</code></pre>
-<p>到这里就可以使用Terminal来科学上网了，注意这部分是根据ss中默认本地端口为1080的情况，如果是ssr，端口是12333，要配置成相应的12333端口。其本质就是ss或ssr进行listen，系统设置代理后，出网的数据要流到127.0.0.1:1080(或12333),ss和ssr listen 后接收数据并通过自己的信道传输。加上privoxy后，就是系统代理发到privoxy，然后privoxy再发到ss ssr上，这中间privoxy可以转发sock5的，也就实现了terminal的穿墙</p>
-<p>参考文章：<br><a target="_blank" rel="noopener" href="https://www.pianshen.com/article/8287306670/">https://www.pianshen.com/article/8287306670/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1124,7 +1095,7 @@ export https_proxy=&quot;127.0.0.1:8118&quot;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
