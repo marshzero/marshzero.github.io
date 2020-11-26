@@ -157,6 +157,111 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/26/Virtual%20Multi-view%20Fusion%20for%203D%20Semantic%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/Virtual%20Multi-view%20Fusion%20for%203D%20Semantic%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Virtual Multi-view Fusion for 3D Semantic论文笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-26 17:13:33 / 修改时间：17:14:21" itemprop="dateCreated datePublished" datetime="2020-11-26T17:13:33+08:00">2020-11-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%82%B9%E4%BA%91/" itemprop="url" rel="index"><span itemprop="name">点云</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Virtual-Multi-view-Fusion-for-3D-Semantic-Segmentation"><a href="#Virtual-Multi-view-Fusion-for-3D-Semantic-Segmentation" class="headerlink" title="Virtual Multi-view Fusion for 3D Semantic Segmentation"></a>Virtual Multi-view Fusion for 3D Semantic Segmentation</h1><p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2007.13138">https://arxiv.org/abs/2007.13138</a><br>会议：ECCV 2020</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文在点云分割领域对多视图方法进行了研究，提出了虚拟视图的概念，避免了真实相机的局限性，提出了新的多视图方法，在scannet和s3dis上效果较<strong>多视图</strong>方法有很大的提升，但是没看到论文中对具体分割方法的介绍，可能没用到3d分割网络？该文章的代码还没有公开。</p>
+<h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>体素方法缺点：<br>用于3D语义分割的最新技术（SOTA）方法使用3D稀疏体素卷积运算符来处理输入数据。例如，MinkowskiNet和SparseConvNet 各自将输入数据加载到稀疏3D体素网格中，并使用稀疏3D卷积提取特征。这些“placecentric”的方法旨在识别3D模式，因此对于具有独特3D形状的对象类型（例如椅子）效果很好，而对其他对象（例如墙面图片）效果不佳。它们还占用了大量内存，这限制了空间分辨率和/或批处理大小。</p>
+<p>多视图方法缺点:<br>当可获得posed RGB-D图像时，尝试使用为处理摄影RGB图像而设计的2D网络预测密集的特征和/或语义标签，然后将它们聚集在可见的3D表面上，或者将特征投影到可见的表面上，并在3D中将它们进一步卷积。<br>尽管这些“view-centric”的方法利用了在大型RGB图像数据集上进行预训练的大规模图像处理网络，但由于在RGB-D扫描数据集中存在遮挡，光照变化和相机姿态未对准的困难，因此无法在标准3D分割基准上达到SOTA性能。在ScanNet基准测试的3D语义标签挑战赛中，基于视图的方法目前不在当前排行榜的上半部分。</p>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><p>本文提出了一种新的基于视图的3D语义分割方法，该方法克服了先前方法的问题。<strong>关键思想是使用从3D场景的“虚拟视图”渲染的合成图像，而不是将处理限制为由物理相机获取的原始摄影图像。</strong><br>这种方法有几个优点，可以解决以前以视图为中心的方法遇到的关键问题。</p>
+<ol>
+<li>我们可以对非自然视场的虚拟视图选择camera intrinsics，以增加在每个渲染图像中观察到的上下文。</li>
+<li>我们在与场景表面的距离/角度变化较小、物体之间遮挡相对较少、表面覆盖冗余较大的位置选择虚拟视点。</li>
+<li>我们渲染非真实的图像，没有依赖于视图的光照效果和背对表面的遮挡——也就是说，虚拟视图可以从墙壁、地板和天花板后面看到一个场景，以提供相对大的背景和小的遮挡。</li>
+<li>我们根据已知的虚拟视图的摄像机参数将像素预测聚合到三维表面上，这样就不会在咬合轮廓上遇到语义标签的“溢出”。</li>
+<li>在训练和推理过程中的虚拟视图可以模拟多尺度的训练和测试，避免二维cnn的尺度内方差问题。在培训和测试期间，我们可以生成任意数量的虚拟视图。在训练期间，由于数据的增加，更多的虚拟视图提供了健壮性。在测试期间，由于投票冗余，更多的视图提供了健壮性。</li>
+<li>我们的多视点融合方法中的二维分割模型可以受益于大型图像预处理数据，如ImageNet和COCO，这些数据对于纯三维卷积方法是不可用的。</li>
+</ol>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="总体流程"><a href="#总体流程" class="headerlink" title="总体流程"></a>总体流程</h3><p>Training stage.<br>在训练阶段，首先为每个3D场景选择虚拟视图，然后为每个虚拟视图选择摄影机内在，摄影机外部，要渲染的通道以及渲染参数（例如，深度范围，背面剔除）.<br>然后，通过为所选通道和groudtruth语义标签渲染所选虚拟视图来生成训练数据。<br>使用渲染的训练数据训练2D语义分割模型，并在推理阶段使用该模型。<br>Inference stage.<br>在推理阶段，使用与训练阶段类似的方法来选择并渲染虚拟视图，但是没有groudtruth语义标签。<br>使用训练好的模型在渲染的虚拟视图上进行2D语义分割，将2D语义特征投影到3D，然后通过融合多个投影的2D语义特征来导出3D中的语义类别。  </p>
+<h3 id="虚拟视图选择"><a href="#虚拟视图选择" class="headerlink" title="虚拟视图选择"></a>虚拟视图选择</h3><h4 id="Camera-intrinsics"><a href="#Camera-intrinsics" class="headerlink" title="Camera intrinsics."></a>Camera intrinsics.</h4><p>使用针孔摄像机模型，提高了FOV，得到的二维图像更大，提供了更大的上下文信息。</p>
+<h4 id="Camera-extrinsics"><a href="#Camera-extrinsics" class="headerlink" title="Camera extrinsics."></a>Camera extrinsics.</h4><p>使用以下四种策略选择相机外参</p>
+<ul>
+<li>均匀采样:<br>均匀采样相机外部，以生成许多新颖的视图，而与3D场景的特定结构无关。<br>具体，使用3D场景顶部均匀采样位置的自顶向下视图，以及从场景中心看去但均匀采样位置的视图。</li>
+<li>尺度不变采样：<br>由于2D卷积神经网络通常不是尺度不变的，因此如果视图的尺度与3D场景不匹配，则模型性能可能会受到影响。<br>为了克服此限制，针对3D场景中的片段以一定比例尺对视图进行采样。<br>具体来说，对3D场景进行了过度分割，对于每个片段，都将相机定位为通过沿法线方向拉回到一定范围的距离来观看片段。<br>进行深度检查以避免前景物体的遮挡。如果在渲染阶段禁用了背面剔除，将进行光线跟踪并删除被背面遮挡的所有视图。<br>3D场景的过度分割是不受监督的，并且不使用地面真实语义标签，因此尺度不变采样可以应用于训练和推理阶段。</li>
+<li>类平衡采样：<br>类平衡已被广泛用作2D语义分段的数据增强方法。<br>通过选择查看代表性不足的语义类别的网格段的视图来进行类平衡，类似于尺度不变采样方法。<br>注意，这种采样方法仅适用于ground truth语义标签可用的训练阶段。</li>
+<li>Original views sampling：<br>从原始摄影机视图中进行采样，因为它们代表了人工如何在具有实际物理约束的真实3D场景中选择摄影机视图。<br>此外，3D场景是从原始视图重建的，因此包含它们可以确保覆盖拐角情况，否则这些情况很难作为随机虚拟视图。<h4 id="Channels-for-rendering"><a href="#Channels-for-rendering" class="headerlink" title="Channels for rendering."></a>Channels for rendering.</h4>渲染了以下通道:RGB color、normal、规范化全局XYZ坐标。额外的通道允许我们超越现有RGB-D传感器的限制。图5显示了虚拟视图渲染的通道。<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126164253.png" alt="20201126164253"><h4 id="Rendering-parameters"><a href="#Rendering-parameters" class="headerlink" title="Rendering parameters."></a>Rendering parameters.</h4>在渲染视图时可打开背景剔除，这样相机视图不会被遮挡，例如一个场景中，我们既可以选择外部视图，也可以选择内部视图。如图6所示。<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126164535.png" alt="20201126164535"><h4 id="Training-vs-inference-stage"><a href="#Training-vs-inference-stage" class="headerlink" title="Training vs. inference stage."></a>Training vs. inference stage.</h4>我们希望在训练和推理阶段使用类似的视图选择方法，以避免产生领域差距。虽然推理成本在现实世界的应用中可能很重要，但在本文中，考虑离线3D分割任务且不在任何一个阶段优化计算成本，所以论文在任何一个阶段使用任意多的虚拟视图。</li>
+</ul>
+<h3 id="Multiview-Fusion"><a href="#Multiview-Fusion" class="headerlink" title="Multiview Fusion"></a>Multiview Fusion</h3><h4 id="2D-semantic-segmentation-model"><a href="#2D-semantic-segmentation-model" class="headerlink" title="2D semantic segmentation model"></a>2D semantic segmentation model</h4><p>用渲染的虚拟视图作为训练数据，训练一个2D语义分割模型。使用xception 65特征提取器和DeeplabV3+ 解码器。<br>从在ImageNet上训练的预先训练的分类模型检查点初始化模型。当使用附加输入通道(如正常图像和坐标图像)训练模型时，通过将权重平铺在附加通道上并在每个空间位置对其进行归一化来修改预训练检查点的第一层，使得沿着通道维度的权重总和保持不变。</p>
+<h4 id="3D-fusion-of-2D-semantic-features"><a href="#3D-fusion-of-2D-semantic-features" class="headerlink" title="3D fusion of 2D semantic features"></a>3D fusion of 2D semantic features</h4><p>在推理过程中，在虚拟视图上运行2D语义分割模型，并获得图像特征(例如，每个像素的一元概率)。为了将2D图像特征投影到3D，使用以下方法:</p>
+<ol>
+<li>在虚拟视图上渲染深度通道；</li>
+<li>对于每个3D点，将其投影回每个虚拟视图，并且仅当像素的深度与点到相机的距离匹配时，才累积投影像素的图像特征。</li>
+<li>与从每个像素投射光线以找到要聚集的3D点的替代方法相比，该方法实现了更好的计算效率。</li>
+<li>首先，场景中3D点的数量远小于场景的所有渲染图像中的像素总数。</li>
+<li>其次，使用深度检查投影3D点比涉及光线投射的操作更快。<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170300.png" alt="20201126170300"><br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170319.png" alt="20201126170319"></li>
+</ol>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><h3 id="Scannet"><a href="#Scannet" class="headerlink" title="Scannet"></a>Scannet</h3><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170347.png" alt="20201126170347"></p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170642.png" alt="20201126170642"></p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170359.png" alt="20201126170359"></p>
+<h3 id="S3DIS"><a href="#S3DIS" class="headerlink" title="S3DIS"></a>S3DIS</h3><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170415.png" alt="20201126170415"></p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170447.png" alt="20201126170447"></p>
+<h3 id="Effect-of-Training-Set-Size-and-number-of-views-at-Inference"><a href="#Effect-of-Training-Set-Size-and-number-of-views-at-Inference" class="headerlink" title="Effect of Training Set Size and number of views at Inference"></a>Effect of Training Set Size and number of views at Inference</h3><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201126170832.png" alt="20201126170832"></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>本文提出了一种虚拟多视角融合的纹理meshes三维语义分割方法。这种方法引入了几个显著提高标签性能的新思想:带有附加通道的虚拟视图、背面剔除、宽视野、多尺度感知视图采样。因此，它克服了困扰大多数以前多视角融合方法的2D-3D错位、遮挡、窄视角和尺度不变性问题。<br>本文得出的令人惊讶的结论是，多视图融合算法是3D纹理网格语义分割的3D卷积的可行替代方案。虽然这项任务的早期工作考虑了多视图融合，但近年来，通用方法已被放弃，取而代之的是点云的3D卷积和稀疏体素网格。本文表明，仔细选择和渲染虚拟视图的简单方法使得多视图融合能够优于几乎所有最近的3D卷积网络。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/AttributeError%20module%20os%20has%20no%20attribute%20path/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -900,124 +1005,6 @@ D:\6_code</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/09/pickle%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">pickel模块学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-09 14:45:00" itemprop="dateCreated datePublished" datetime="2020-11-09T14:45:00+08:00">2020-11-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-23 22:32:50" itemprop="dateModified" datetime="2020-11-23T22:32:50+08:00">2020-11-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Python-api-pickle模块学习"><a href="#Python-api-pickle模块学习" class="headerlink" title="Python-api pickle模块学习"></a>Python-api pickle模块学习</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>python3.9-doc-pickle:<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a><br>在做实验时，可能需要将数据打包成pickle文件，方便后续的读取。pickle是一个python模块，源代码在Lib/pickle.py，可将python对象进行序列化和反序列化。以下内容参考python文档和网上博客。</p>
-<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The pickle module implements binary protocols for serializing and de-serializing a Python object structure. “Pickling” is the process whereby a Python object hierarchy is converted into a byte stream, and “unpickling” is the inverse operation, whereby a byte stream (from a binary file or bytes-like object) is converted back into an object hierarchy. Pickling (and unpickling) is alternatively known as “serialization”, “marshalling,” 1 or “flattening”; however, to avoid confusion, the terms used here are “pickling” and “unpickling”.</span><br></pre></td></tr></table></figure>
-<h2 id="与其他相似库的比较"><a href="#与其他相似库的比较" class="headerlink" title="与其他相似库的比较"></a>与其他相似库的比较</h2><h3 id="与marshal比较"><a href="#与marshal比较" class="headerlink" title="与marshal比较"></a>与marshal比较</h3><p>Python有一个更原始的序列化模块，称为marshal，但通常pickle应该始终是序列化Python对象的首选方式。 marshal存在主要是为了支持Python的.pyc文件。该pickle模块marshal在以下几个重要方面有所不同：</p>
-<ul>
-<li><p>该pickle模块跟踪已序列化的对象，因此以后对同一对象的引用将不会再次序列化。marshal并不这样做。这对于递归对象和对象共享都有影响。递归对象是包含对其自身的引用的对象。marshal无法处理递归对象，尝试使用marsha处理递归对象将使您的Python解释器崩溃。当要序列化的对象层次结构中的不同位置存在对同一对象的多个引用时，就会发生对象共享。 pickle仅将此类对象存储一次，并确保所有其他引用都指向主副本。共享的对象保持共享状态，这对于可变对象非常重要。</p>
-</li>
-<li><p>marshal不能用于序列化用户定义的类及其实例。 pickle可以透明地保存和恢复类实例，但是类定义必须是可导入的，并且与对象存储时位于同一模块中。</p>
-</li>
-<li><p>该marshal序列化格式是不能保证整个Python版本移植。因为它的主要工作是支持 .pyc文件，所以Python实现者保留在需要时以非向后兼容的方式更改序列化格式的权利。pickle选择了兼容的pickle协议，并且如果您的数据越过了唯一的突破性更改语言边界，则pickling和unpickling可以处理Python 2到Python 3类型的差异，则可以确保序列化格式在Python版本之间向后兼容。</p>
-<h3 id="与json比较"><a href="#与json比较" class="headerlink" title="与json比较"></a>与json比较</h3><p>pickle协议和JSON (JavaScript Object Notation)之间有基本的区别:</p>
-</li>
-<li><p>JSON是一种文本序列化格式（虽然大多数时间然后将其编码为utf-8，但它输出unicode文本），而pickle是一种二进制序列化格式；</p>
-</li>
-<li><p>JSON是人类可读的，而pickle则不是；</p>
-</li>
-<li><p>JSON是可互操作的，并且在Python生态系统之外被广泛使用，而pickle是特定于Python的；</p>
-</li>
-<li><p>默认情况下，JSON只能表示Python内置类型的子集，而不能表示自定义类。pickle可以表示大量的Python类型（通过巧妙地使用Python的自省功能，其中的许多会自动实现；可以通过实现特定的对象API解决复杂的情况）；</p>
-</li>
-<li><p>与pickle不同，反序列化不受信任的JSON本身并不会创建代码执行漏洞。</p>
-</li>
-</ul>
-<p>这里也有python的json模块：一个标准的库模块，允许JSON序列化和反序列化。</p>
-<h2 id="Data-stream-format-数据流格式"><a href="#Data-stream-format-数据流格式" class="headerlink" title="Data stream format 数据流格式"></a>Data stream format 数据流格式</h2><p>所使用的数据格式pickle是特定于Python的。这样做的优点是不受外部标准（例如JSON或XDR）的限制（不能表示指针共享）；但是，这意味着非Python程序可能无法重建pickling后的Python对象。</p>
-<p>默认情况下，pickle数据格式使用相对紧凑的二进制表示形式。如果需要最佳的大小特征，则可以有效地压缩pickling的数据。</p>
-<p>该模块pickletools包含用于分析生成的数据流的工具pickle。 pickletools源代码对pickle协议使用的操作码有大量注释。</p>
-<p>当前有6种不同的协议可用于pickling。使用的协议越高，读取生成的pickle所需的Python版本越新。</p>
-<ul>
-<li><p>Protocol version 0是原始的“人类可读”协议，并且与Python的早期版本向后兼容。</p>
-</li>
-<li><p>Protocol version 1是旧的二进制格式，也与Python的早期版本兼容。</p>
-</li>
-<li><p>Protocol version 2是在Python 2.3中引入的。它提供了更高效的新型es酸洗。参考PEP 307，了解有关协议2带来的改进的信息。</p>
-</li>
-<li><p>Protocol version 3是在Python 3.0中添加的。它具有对bytes对象的显式支持， 并且不能被Python 2.x unpickled。这是Python 3.0–3.7中的默认协议。</p>
-</li>
-<li><p>Protocol version 4是在Python 3.4中添加的。它增加了对非常大的对象的支持，pickling更多种类的对象以及一些数据格式优化。从Python 3.8开始，它是默认协议。参考PEP 3154，获取有关协议4带来的改进的信息。</p>
-</li>
-<li><p>Protocol version 5已在Python 3.8中添加。它增加了对带外数据的支持和对带内数据的加速。参考PEP 574，了解有关协议5带来的改进的信息。</p>
-</li>
-</ul>
-<h2 id="Module-Interface-模块接口"><a href="#Module-Interface-模块接口" class="headerlink" title="Module Interface 模块接口"></a>Module Interface 模块接口</h2><p>pickle提供以下属性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pickle.HIGHEST_PROTOCOL</span><br><span class="line">An integer, the highest protocol version available. This value can be passed as a protocol value to functions dump() and dumps() as well as the Pickler constructor.</span><br><span class="line"></span><br><span class="line">pickle.DEFAULT_PROTOCOL</span><br><span class="line">An integer, the default protocol version used for pickling. May be less than HIGHEST_PROTOCOL. Currently the default protocol is 4, first introduced in Python 3.4 and incompatible with previous versions.</span><br><span class="line"></span><br><span class="line">Changed in version 3.0: The default protocol is 3.</span><br><span class="line"></span><br><span class="line">Changed in version 3.8: The default protocol is 4.</span><br></pre></td></tr></table></figure>
-
-<p>The pickle module provides the following functions to make the pickling process more convenient:</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1087,7 +1074,7 @@ D:\6_code</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
