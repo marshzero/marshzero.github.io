@@ -157,6 +157,171 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/Ubuntu18-04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%89%E8%A3%85%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/26/Ubuntu18-04%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AE%89%E8%A3%85%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%84%E4%BA%8B/" class="post-title-link" itemprop="url">Ubuntu18.04双系统安装与安装后要做的事</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-26 23:57:15" itemprop="dateCreated datePublished" datetime="2020-10-26T23:57:15+08:00">2020-10-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-03 16:31:19" itemprop="dateModified" datetime="2020-11-03T16:31:19+08:00">2020-11-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Ubuntu18-04双系统安装及遇到的坑"><a href="#Ubuntu18-04双系统安装及遇到的坑" class="headerlink" title="Ubuntu18.04双系统安装及遇到的坑"></a>Ubuntu18.04双系统安装及遇到的坑</h2><h4 id="一、制作U盘安装盘"><a href="#一、制作U盘安装盘" class="headerlink" title="一、制作U盘安装盘"></a>一、制作U盘安装盘</h4><p>网上的教程大多是使用UltraISO(软碟通)来将iso镜像写入U盘。我的软碟通在写入时提示“设备忙”，于是尝试了网上的解决方法：关闭管家、插拔U盘、避免iso文件在U盘内存储，还是提示“设备忙”，于是转用rufus来制作安装盘，完成。<br>我的笔记本主板是uefi启动，C盘128G SSD，D盘1T HDD。我把D盘分出200G的空闲空间安装ubuntu18.04，使用刻录好的U盘启动，安装时选择D盘分出的空闲200G空间。分区把200G分为192G（主分区，挂载”/“）和8G（逻辑分区，交换空间，我的电脑内存8G），这样分区适用于linux新手，可以避免ubuntu的boot分区后续空间不足的尴尬。<br>安装完成后在我的bios界面就会有两个启动项：win10和ubuntu。ubuntu的启动界面也可以进入win10</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/59d5cfe62531">Ubuntu U盘启动工具Rufus制作(详细步骤)
+</a></p>
+</blockquote>
+<h4 id="二、安装好Ubuntu后要做的事"><a href="#二、安装好Ubuntu后要做的事" class="headerlink" title="二、安装好Ubuntu后要做的事"></a>二、安装好Ubuntu后要做的事</h4><h5 id="1-先删几个软件"><a href="#1-先删几个软件" class="headerlink" title="1.先删几个软件"></a>1.先删几个软件</h5><h6 id="删除libreoffice"><a href="#删除libreoffice" class="headerlink" title="删除libreoffice"></a>删除libreoffice</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove libreoffice-common  </span><br></pre></td></tr></table></figure>
+<h6 id="删除Amazon的链接"><a href="#删除Amazon的链接" class="headerlink" title="删除Amazon的链接"></a>删除Amazon的链接</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove unity-webapps-common  </span><br></pre></td></tr></table></figure>
+<h6 id="删掉基本不用的自带软件（用的时候再装也来得及）"><a href="#删掉基本不用的自带软件（用的时候再装也来得及）" class="headerlink" title="删掉基本不用的自带软件（用的时候再装也来得及）"></a>删掉基本不用的自带软件（用的时候再装也来得及）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku  landscape-client-ui-install  </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove onboard deja-dup  </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36498339/article/details/78642033">安装Ubuntu 16.04后要做的事
+</a></p>
+</blockquote>
+<h5 id="2-更换源"><a href="#2-更换源" class="headerlink" title="2.更换源"></a>2.更换源</h5><p>更换源这次我发现了一个新的方法，就是在软件更新中选择最佳服务器，我的是中科大的源，软件更新自己就把源更换了，很nice。<br>老方法就是手动更改源：<br>先备份sources.list</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp &#x2F;etc&#x2F;apt&#x2F;sources.list &#x2F;etc&#x2F;apt&#x2F;sources.list.bak</span><br></pre></td></tr></table></figure>
+<p>然后将sources.list中的源更换成国内源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit &#x2F;etc&#x2F;apt&#x2F;sources.list</span><br></pre></td></tr></table></figure>
+<p>随便选以下一种源就行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#阿里源</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">##中科大源</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.ustc.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">163源</span><br><span class="line">##163源</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.163.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">清华源</span><br><span class="line">##清华源</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p>换完了系统更新一下，第二个命令可能会很慢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、换成N卡驱动"><a href="#三、换成N卡驱动" class="headerlink" title="三、换成N卡驱动"></a>三、换成N卡驱动</h4><p>我的笔记本是MX150，在软件更新中点击附加驱动，选择383的专有驱动应用更改（忘了版本了），然后会让你输入一个密码，这个在后面开机时会用到，而且在开机时好像电脑的security boot要关掉。<br>下载好驱动，应用更改好了，重启电脑，会出现一个蓝色背景的界面 perform mok management<br>正确的做法如下： </p>
+<ol>
+<li>当进入蓝色背景的界面perform mok management 后，选择 enroll mok , </li>
+<li>进入enroll mok 界面，选择 continue , </li>
+<li>进入enroll the key 界面，选择 yes , </li>
+<li>接下来输入你在安装驱动时输入的密码， </li>
+<li>之后会跳到蓝色背景的界面perform mok management 选择第一个 reboot<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bush_nj/article/details/80850937">配有 Nvidia 显卡的笔记本安装 ubuntu18.04 所遇到的问题与解决
+</a></p>
+</blockquote>
+</li>
+</ol>
+<h4 id="四、美化"><a href="#四、美化" class="headerlink" title="四、美化"></a>四、美化</h4><h5 id="1-安装Gnome-tweak-tool"><a href="#1-安装Gnome-tweak-tool" class="headerlink" title="1.安装Gnome-tweak-tool"></a>1.安装Gnome-tweak-tool</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gnome-tweak-tool</span><br><span class="line">sudo apt-get install gnome-shell-extensions</span><br></pre></td></tr></table></figure>
+<p>安装的软件名为“优化”，打开“优化”在扩展选项卡中开启</p>
+<ul>
+<li>Dash to dock：可以对Dock栏进行自定义</li>
+<li>User Theme：使shell主题（即顶部菜单栏）使用桌面主题</li>
+<li>Blyr：使Overview有模糊背景效果</li>
+<li>Coverflow Alt-Tab：应用程序切换效果，类似Mac OS X</li>
+<li>NetSpeed：推荐，显示网速</li>
+<li>TopIcons Plus：推荐，后台程序显示在托盘（使deepin-wine的程序显示在托盘，必装）</li>
+</ul>
+<h5 id="2-安装vimix主题和图标"><a href="#2-安装vimix主题和图标" class="headerlink" title="2.安装vimix主题和图标"></a>2.安装vimix主题和图标</h5><p>Github链接：<a target="_blank" rel="noopener" href="https://github.com/vinceliuice/vimix-gtk-themes">vimix桌面主题</a>和<a target="_blank" rel="noopener" href="https://github.com/vinceliuice/vimix-icon-theme">vimix图标</a>。进入Github下载文件，主题解压到/usr/share/themes目录下，图标解压到/usr/share/icons目录下。在终端中分别执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo .&#x2F;Vimix-installer</span><br><span class="line">&#x2F;&#x2F;即执行下图所示脚本，用来安装vimix的一组主题，根据提示完成安装即可</span><br><span class="line">sudo .&#x2F;Installer.sh</span><br><span class="line">&#x2F;&#x2F;同上安装主题</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28869927/article/details/80917997">【Linux】Ubuntu 18.04桌面美化</a></p>
+</blockquote>
+<h5 id="3-点击图标最小化"><a href="#3-点击图标最小化" class="headerlink" title="3.点击图标最小化"></a>3.点击图标最小化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsettings set org.gnome.shell.extensions.dash-to-dock click-action &#39;minimize&#39;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/4bd2d9b1af41">不美翻怎么开发!Ubuntu 16.04 LTS深度美化!(2017年度定稿版)
+</a></p>
+</blockquote>
+<h4 id="五、安装常用软件"><a href="#五、安装常用软件" class="headerlink" title="五、安装常用软件"></a>五、安装常用软件</h4><h5 id="1-安装shadowsocks-qt5"><a href="#1-安装shadowsocks-qt5" class="headerlink" title="1.安装shadowsocks-qt5"></a>1.安装shadowsocks-qt5</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:hzwhuang&#x2F;ss-qt5</span><br></pre></td></tr></table></figure>
+<p>加入这个源后安装会报错，因为这个源没有18.04的源，修改文件中的版本即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;hzwhuang-ubuntu-ss-qt5-bionic.list</span><br><span class="line">sudo vim hzwhuang-ubuntu-ss-qt5-bionic.list</span><br></pre></td></tr></table></figure>
+<p>将文件修改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http:&#x2F;&#x2F;ppa.launchpad.net&#x2F;hzwhuang&#x2F;ss-qt5&#x2F;ubuntu xenial main</span><br><span class="line"># deb-src http:&#x2F;&#x2F;ppa.launchpad.net&#x2F;hzwhuang&#x2F;ss-qt5&#x2F;ubuntu bionic main</span><br></pre></td></tr></table></figure>
+<p>然后安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a912952381/article/details/81172971">Ubuntu18.04 安装ss-qt5 缺少依赖文件</a></p>
+</blockquote>
+<h5 id="2-安装wps"><a href="#2-安装wps" class="headerlink" title="2.安装wps"></a>2.安装wps</h5><p>在wps官网下载linux的deb安装包，下载依赖<a target="_blank" rel="noopener" href="http://kr.archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb">libpng12-0</a><br>安装libpng12-0</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i libpng12-0*.deb</span><br></pre></td></tr></table></figure>
+<p>安装wps</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i wps*.deb</span><br></pre></td></tr></table></figure>
+<p>若出现错误，或者没有安装成功，使用如下命令修复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -f</span><br></pre></td></tr></table></figure>
+<p>至此，wps已经安装成功。但是由于Linux版权原因，WPS缺少字体，故我们要安装WPS所需要的字体。首先下载<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1QJbyRDP7yu7F3pryKgdrYQ">WPS字体</a>，然后解压。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;usr&#x2F;share&#x2F;fonts&#x2F;WPS-Fonts       #新建wps字体存储文件夹</span><br><span class="line">cd ~&#x2F;Downloads     #进入下载好的字体目录</span><br><span class="line">sudo apt-get install unzip  #安装zip解压软件</span><br><span class="line">sudo unzip wps_symbol_fonts.zip -d &#x2F;usr&#x2F;share&#x2F;fonts&#x2F;WPS-Fonts&#x2F;  #解压字体到指定文件夹</span><br><span class="line">sudo mkfontscale    #生成字体索引</span><br><span class="line">sudo mkfontdir      #生成字体索引</span><br><span class="line">sudo fc-cache       #更新字体缓存</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">Ubuntu18.04 安装后应该做的事（更新中）
+</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/tydyz/article/details/74991048">Linux for Ubuntu 解决WPS安装缺少libpng12-0的问题</a></p>
+</blockquote>
+<h5 id="3-安装截图软件Shutter"><a href="#3-安装截图软件Shutter" class="headerlink" title="3.安装截图软件Shutter"></a>3.安装截图软件Shutter</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install shutter    #安装shutter</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">编辑按钮变灰色</a></p>
+<h5 id="4-安装google-chrome"><a href="#4-安装google-chrome" class="headerlink" title="4.安装google chrome"></a>4.安装google chrome</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;longhr&#x2F;ubuntu1604hub&#x2F;master&#x2F;linux_signing_key.pub | sudo apt-key add</span><br><span class="line">sudo sh -c &#39;echo &quot;deb [ arch&#x3D;amd64 ] http:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;chrome&#x2F;deb&#x2F; stable main&quot; &gt;&gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google-chrome.list&#39;</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-安装搜狗输入法"><a href="#5-安装搜狗输入法" class="headerlink" title="5.安装搜狗输入法"></a>5.安装搜狗输入法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install fcitx-bin      #安装fcitx-bin</span><br><span class="line">sudo apt-get update --fix-missing   #修复fcitx-bin安装失败的情况</span><br><span class="line">sudo apt-get install fcitx-bin      #重新安装fcitx-bin</span><br><span class="line">sudo apt-get install fcitx-table    #安装fcitx-table</span><br></pre></td></tr></table></figure>
+<p>在sougou拼音官网下载deb包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i sogoupinyin*.deb       #安装搜狗拼音</span><br><span class="line">sudo apt-get install -f             #修复搜狗拼音安装的错误</span><br><span class="line">sudo dpkg -i sogoupinyin*.deb       #重新安装搜狗拼音</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hymanjack/article/details/80285400">Ubuntu18.04 安装后应该做的事（更新中）</a></p>
+</blockquote>
+<h5 id="6-安装网易云音乐"><a href="#6-安装网易云音乐" class="headerlink" title="6.安装网易云音乐"></a>6.安装网易云音乐</h5><p>在官网下载deb包，安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i netease-cloud-music*.deb</span><br></pre></td></tr></table></figure>
+
+<h5 id="7-安装QQ、微信、迅雷、百度网盘"><a href="#7-安装QQ、微信、迅雷、百度网盘" class="headerlink" title="7.安装QQ、微信、迅雷、百度网盘"></a>7.安装QQ、微信、迅雷、百度网盘</h5><p><a target="_blank" rel="noopener" href="https://github.com/wszqkzqk/deepin-wine-ubuntu">Deepin wine for Ubuntu</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/%E5%A4%8D%E4%B9%A0%E7%94%A8%E6%80%BB%E7%BB%93%EF%BC%9AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-%E9%BB%84%E8%BF%AA%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -354,14 +519,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
