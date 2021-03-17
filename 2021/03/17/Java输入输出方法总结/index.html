@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Java输入输出方法总结Scanner库在做牛客OJ输入输出练习场时的笔记，JDK版本为1.8.0_251，idea为2020.1.2，所写很多是个人理解，敬请指正。下文的代码均在IDEA上运行调试，输入的每行都会有”\n”。并且下面函数，只要scanner对象没有读到值，为空，那么当前函数都会等待输入，不会执行下一句代码。 基本用法创建Scanner的一个实例，并将System.in传入Scan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java输入输出方法总结">
+<meta property="og:url" content="http://example.com/2021/03/17/Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Yzy&#39;s blog">
+<meta property="og:description" content="Java输入输出方法总结Scanner库在做牛客OJ输入输出练习场时的笔记，JDK版本为1.8.0_251，idea为2020.1.2，所写很多是个人理解，敬请指正。下文的代码均在IDEA上运行调试，输入的每行都会有”\n”。并且下面函数，只要scanner对象没有读到值，为空，那么当前函数都会等待输入，不会执行下一句代码。 基本用法创建Scanner的一个实例，并将System.in传入Scan">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316160146.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317153915.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154043.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154101.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154321.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154350.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154513.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161319.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161915.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161945.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162349.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162540.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162730.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162841.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316200122.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316200302.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316210955.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317163748.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317163918.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317164208.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317164221.png">
+<meta property="article:published_time" content="2021-03-17T09:00:40.000Z">
+<meta property="article:modified_time" content="2021-03-17T09:01:05.320Z">
+<meta property="article:author" content="Yang Zeyu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316160146.png">
+
+<link rel="canonical" href="http://example.com/2021/03/17/Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java输入输出方法总结 | Yzy's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yzy's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/17/Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java输入输出方法总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-17 17:00:40 / 修改时间：17:01:05" itemprop="dateCreated datePublished" datetime="2021-03-17T17:00:40+08:00">2021-03-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Java输入输出方法总结"><a href="#Java输入输出方法总结" class="headerlink" title="Java输入输出方法总结"></a>Java输入输出方法总结</h1><h2 id="Scanner库"><a href="#Scanner库" class="headerlink" title="Scanner库"></a>Scanner库</h2><p>在做牛客OJ输入输出练习场时的笔记，JDK版本为1.8.0_251，idea为2020.1.2，所写很多是个人理解，敬请指正。下文的代码均在IDEA上运行调试，输入的每行都会有”\n”。并且下面函数，只要scanner对象没有读到值，为空，那么当前函数都会等待输入，不会执行下一句代码。</p>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>创建Scanner的一个实例，并将System.in传入Scanner类构造器中，这时就算在控制台输入信息，scan对象也不会读取任何东西（通过调试猜想）。</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316160146.png" alt="20210316160146"></p>
+<p>可以看到上图中变量框内buf为””，代表当前scan读入的值为空。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Scanner读入数据可以使用next()和nextLine()函数。</p>
+<h3 id="next-函数用法"><a href="#next-函数用法" class="headerlink" title="next()函数用法"></a>next()函数用法</h3><p>next()函数会等待当前的输入，并且读入当前的有效字符  </p>
+<ol>
+<li>未读到有效字符时，会一直等待读入有效字符，这时，空格和回车是无效字符；  </li>
+<li>当读到有效字符时，空格会成为无效字符，空格后的字符不会读入，而回车作为终止符，代表这一行输入结束，next()函数也结束，例如用例2和用例3；</li>
+<li>未读到终止符时，一直等待输入。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    System.out.print(<span class="string">&quot;输入的数据为:&quot;</span> + scan.next());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">注：&quot;[in]:&quot;后的字符为输入，&quot;[out]:&quot;后的字符为输出。</span><br><span class="line">用例1</span><br><span class="line">[in]:hello world</span><br><span class="line">[out]:输入的数据为:hello</span><br><span class="line">---</span><br><span class="line">用例2</span><br><span class="line">[in]:   hello world</span><br><span class="line">[out]:输入的数据为:hello</span><br><span class="line">---</span><br><span class="line">用例3</span><br><span class="line">[in]:</span><br><span class="line"></span><br><span class="line">hello world</span><br><span class="line">[out]:输入的数据为:hello</span><br></pre></td></tr></table></figure>
+
+<h3 id="nextLine-函数用法"><a href="#nextLine-函数用法" class="headerlink" title="nextLine()函数用法"></a>nextLine()函数用法</h3><p>nextLine()函数和next函数基本功能一致，但是nextLine()会将空格作为有效字符读入，回车作为终止符。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    System.out.println(<span class="string">&quot;输入的数据为：&quot;</span> + scan.nextLine());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">用例1</span><br><span class="line">[in]:   hello world</span><br><span class="line">[out]:   hello world</span><br><span class="line"></span><br><span class="line">用例2(这里输入和输出中three space前后都有三个空格，空格作为有效字符)</span><br><span class="line">[in]:   three space   </span><br><span class="line">[out]:   three space   </span><br><span class="line"></span><br><span class="line">用例3(这里输入为回车，输出也为空)</span><br><span class="line">[in]:</span><br><span class="line"></span><br><span class="line">[out]:</span><br></pre></td></tr></table></figure>
+
+<h3 id="hasNext"><a href="#hasNext" class="headerlink" title="hasNext()"></a>hasNext()</h3><p>hasNext()会等待当前输入，和next()函数类似。  </p>
+<ol>
+<li>但是当hasNext()读到有效字符时，并且输入回车终止符后，hasNext()会返回true；</li>
+<li>在未读到有效字符时，和next()一样，空格和回车都是无效字符。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">    System.out.println(<span class="string">&quot;输入的数据为：&quot;</span> + scan.hasNext());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到下面的代码，while会一直运行，hasNext()一直等待下一个输入，当有输入有效字符并回车后，hasNext()返回true，循环体内scan.next()读到输入的字符。当输入一个数据并回车后（例如3），scan.next()会读取3，随后hasNext()读到\n，这时\n时无效字符，所以hasNext()等待有效字符的输入，停在判断语句处。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否还有输入</span></span><br><span class="line">        <span class="keyword">while</span>(scan.hasNext()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;输入的数据为：&quot;</span> + scan.next());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hasNextLine"><a href="#hasNextLine" class="headerlink" title="hasNextLine()"></a>hasNextLine()</h3><p>hasNextLine()会等待当前输入，具体机制是通过正则表达式匹配当前位置及之后的字符。  </p>
+<ol>
+<li>当匹配到时，例如当前位置为\n，或者当前位置为有效字符，但有效字符后由结束符(\n或\r或\n\r或\r\n)，hasNextLine()会返回true；</li>
+<li>当匹配不到时，会返回false。</li>
+<li>当匹配到有效字符，但是没有结束符，会一直等待输入结束符</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LINE_SEPARATOR_PATTERN =</span><br><span class="line">                                           <span class="string">&quot;\r\n|[\n\r\u2028\u2029\u0085]&quot;</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LINE_PATTERN = <span class="string">&quot;.*(&quot;</span>+LINE_SEPARATOR_PATTERN+<span class="string">&quot;)|.+$&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="hasNextInt"><a href="#hasNextInt" class="headerlink" title="hasNextInt()"></a>hasNextInt()</h3><p>这个函数和hasNext()类似，多了判断读到的值是不是int的逻辑，如果当前读到的是空格或者回车，函数不会停止，仍然等待输入有效字符，直到输入数字或非数字，当输入非数字时，hasNextInt返回false，循环结束。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否还有输入</span></span><br><span class="line">        <span class="keyword">while</span>(scan.hasNextInt()) &#123;</span><br><span class="line">            <span class="keyword">int</span> number = scan.nextInt();</span><br><span class="line">            System.out.println(<span class="string">&quot;输入的数据为：&quot;</span> + number);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于牛客网和IDEA的实验结果不同的原因"><a href="#关于牛客网和IDEA的实验结果不同的原因" class="headerlink" title="关于牛客网和IDEA的实验结果不同的原因"></a>关于牛客网和IDEA的实验结果不同的原因</h2><p>以牛客OJ在线编程常见输入输出练习场中的A题目为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">题目描述：计算a+b</span><br><span class="line"></span><br><span class="line">输入描述：输入包括两个正整数a,b(1 &lt;&#x3D; a, b &lt;&#x3D; 10^9),输入数据包括多组。</span><br><span class="line"></span><br><span class="line">输出描述: 输出a+b的结果</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">输入：</span><br><span class="line">1 5</span><br><span class="line">10 20</span><br><span class="line">输出：</span><br><span class="line">6</span><br><span class="line">30</span><br></pre></td></tr></table></figure>
+
+<h3 id="hasNext-IDEA-A题"><a href="#hasNext-IDEA-A题" class="headerlink" title="hasNext() IDEA A题"></a>hasNext() IDEA A题</h3><p>采用复制粘贴形式，将牛课上用例粘贴到IDEA控制台，用例如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">while</span> (scan.hasNext()) &#123;</span><br><span class="line">            <span class="keyword">int</span> a = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> b = scan.nextInt();</span><br><span class="line">            System.out.println(a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用例：</span><br><span class="line"><span class="number">1</span> <span class="number">5</span></span><br><span class="line"><span class="number">10</span> <span class="number">20</span></span><br><span class="line">scan.buf:<span class="string">&quot;1 5\n10 20&quot;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到直接粘贴是没有最后的\n，如果自己一行一行敲进去会有\n。</p>
+<p>运行到第二次int b时，会等待输入结束符回车，输入回车也就是\n后，buf变为”1 5\n10 20\n”，并且开始继续运行第三次循环你，而这时的hasNext()会一直等待输入，卡在第三次循环判断处。</p>
+<h3 id="hasNext-牛客-A题"><a href="#hasNext-牛客-A题" class="headerlink" title="hasNext() 牛客 A题"></a>hasNext() 牛客 A题</h3><p>采用hasNext()，代码和上面IDEA实验的一样</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317153915.png" alt="20210317153915"></p>
+<ol>
+<li>如下图，采用hasNext()，调试时可以看到scan读到的是”1 5 10 20 “（没有”\n”，在IDEA上自己输入会有”\n”,但是20后面有一个空字符，不清楚是什么）,并且position为0，代表当前要读的字符位置为0，即第一个字符。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154043.png" alt="20210317154043"></p>
+<ol start="2">
+<li>如下图，当第一次读完a和b时，已经将1和5读入了scan.nextInt()，这时下一个要读的字符的位置为3，即第四个字符（空格算一个字符）</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154101.png" alt="20210317154101"></p>
+<ol start="3">
+<li>如下图，当第二次执行到while的判断语句时，position为3，这时hasNext()可以判定还有字符，返回true，于是进入循环体</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154321.png" alt="20210317154321"></p>
+<ol start="4">
+<li>如下图，当第二次读完a后，position变为6，是10后面那个空格的位置，即第七个字符，当然下一次读20时，空格会省去，这是next()的特点，可以看后文next()函数的详细介绍。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154350.png" alt="20210317154350"></p>
+<ol start="5">
+<li>如下图，当第二次读完a和b后，position变为9，而9的位置刚好在20后面,这里猜想有两种可能：</li>
+</ol>
+<p>1）猜想1：牛客网上用例输入系统后，没有回车\n这种符号（IDEA上面有”\n”），<del>于是第三次循环时，hasNext()函数会返回false，也就不会进行第三次循环，而是执行到函数末尾了。</del>那么position为9的数据是什么？如果是空格那hasNext()遇见空格会继续等待输入，也就不是空格；那如果是回车，就变成了猜想2</p>
+<p>2）猜想2：牛客网上每一行结尾都有一个\n，但是调式系统没有显示，hasNext()碰到\n时认为没有接收到有效字符，接着往后面读，进而读到了后面一行的数字；当整个用例文件被读完的时候，按照hasNext()函数的特点，会一直等待继续输入，但是因为文件被读完，可能发出了文件结束的信号，从而程序运行结束。</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317154513.png" alt="20210317154513"></p>
+<p>因此更相信猜想2，于是得出以下结论：</p>
+<p>结论：hasNext()运行一次，在未读到有效字符时，空格和回车都是无效字符；在读到了有效字符后，读到\n就执行完了当前这句代码，没有读到\n的话，会一直等待输入，知道输入终止符\n，hasNext()才会停止。牛客网上用例中，可能每一行结尾都有一个\n，而牛客网上的next和nextLine类函数可以停止等待输入，可能是文件读取结束发出信号所致（猜想）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">这个代码框内为最开始的想法，现在看来有误，只是保留在此</span><br><span class="line"></span><br><span class="line">这个写在最前面，防止掉入陷阱。牛客网的判题系统的所有测试用例都保存在文件中，而文件中每一行末尾没有&quot;\n&quot;，自己在IDEA的控制台输入时，会读到&quot;\n&quot;，这就导致了在循环或者判断时，hasNext()和hasNextLine()在不同平台上结果会有差异。(可以自己在牛客和IDEA调试一下，看看scan对象的buf变量就知道了)</span><br><span class="line"></span><br><span class="line">hasNext()对于没有\n的一行，判false </span><br><span class="line"></span><br><span class="line">hasNextLine()对于没有\n的一行，判true （假定牛课上每一行结尾没有\n，那么无论有没有\n都会判true）（如果牛客上每一行结尾都有\n的话，那么hasNextLine()是判true，从而进循环体报错，没有\n会等待输入结束符。）</span><br><span class="line"></span><br><span class="line">hasNext()对于有\n的一行，判true，无限循环</span><br><span class="line"></span><br><span class="line">hasNextLine()对于有\n的一行，判true，无限循环</span><br></pre></td></tr></table></figure>
+
+<h3 id="hasNextLine-IDEA-A题"><a href="#hasNextLine-IDEA-A题" class="headerlink" title="hasNextLine() IDEA A题"></a>hasNextLine() IDEA A题</h3><p>现在，在IDEA上测试下hasNextLine()，代码和用例如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (scan.hasNextLine()) &#123;</span><br><span class="line">            <span class="keyword">int</span> a = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> b = scan.nextInt();</span><br><span class="line">            System.out.println(a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">用例：</span><br><span class="line"><span class="number">1</span> <span class="number">5</span></span><br><span class="line"><span class="number">10</span> <span class="number">20</span></span><br><span class="line">scan.buf:<span class="string">&quot;1 5\n10 20&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>用例直接粘贴到控制台内，可以看到buf中为”1 5\n10 20”</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161319.png" alt="20210317161319"></p>
+<p>当第一次读完a和b时，position变为3，指向第一个\n</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161915.png" alt="20210317161915"></p>
+<p>当第二次运行完while的判断语句后，可以看到position仍未3，但是hasNextPattren匹配到了后面还有信息</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317161945.png" alt="20210317161945"></p>
+<p>当执行到第二次b的读入时，程序卡住了，等待输入，这时输入回车，就可以继续读入b的值</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162349.png" alt="20210317162349"></p>
+<p>敲入回车后，看到position为9，buf也变为”1 5\n10 20\n”，这时9指向”\n”</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162540.png" alt="20210317162540"></p>
+<p>在继续执行后，hasNextLine()仍然判断到后面有信息，进入循环体内。</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162730.png" alt="20210317162730"></p>
+<p>这时执行到a的读入，nextInt()开始等待输入，程序变得无法结束</p>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317162841.png" alt="20210317162841"></p>
+<h3 id="hasNextLine-牛客-A题"><a href="#hasNextLine-牛客-A题" class="headerlink" title="hasNextLine() 牛客 A题"></a>hasNextLine() 牛客 A题</h3><p>现在，再使用hasNextLine()调试一下，代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (scan.hasNextLine()) &#123;</span><br><span class="line">            <span class="keyword">int</span> a = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> b = scan.nextInt();</span><br><span class="line">            System.out.println(a+b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>如下图，当即将执行到while的判断语句hasNextLine()时，scan并没有读取到任何东西，当执行hasNextLine()后，才会读取输入，并判断是否有一行数据</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316200122.png" alt="20210316200122"></p>
+<ol start="2">
+<li>如下图，当执行完hasNextLine()后，进入循环体，还未执行a这行代码。可以看到buf是”1 5 10 20 “，hasNextLine()以此判断有数据，返回true，才进入了循环体。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316200302.png" alt="20210316200302"></p>
+<ol start="3">
+<li>如下图，当即将执行到while的判断语句hasNextLine()时，position为9，已经指向空了，但是hasNextLine()在这里会返回true，判断机制还没有搞清楚，因此当执行到循环体第一句时，就会报错Exception occurred: java.util.NoSuchElementException (uncaught)Signal Dispatcher:</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210316210955.png" alt="20210316210955"></p>
+<ol start="4">
+<li><p>由此猜想牛客对用例的输入可能采取了某些方法，当然在只有牛客用例的时候，无法进行控制台输入，也就和上面IDEA的结果不同，IDEA是阻塞等待输入，而牛客这里直接报错。</p>
+</li>
+<li><p>当我们采用nextLine()，代码如下，读取这一行，相当于跳过当前行，这样下一次while判断时，hasNextLine()就不会返回true了，成功解决A题目。<del>但是仅仅是输入行中没有”\n”时才可以用nextLine()来辅助hasNextLine()，当有”\n”时hasNextLine()永远返回true，无法跳出循环。</del></p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (scan.hasNextLine()) &#123;</span><br><span class="line">            <span class="keyword">int</span> a = scan.nextInt();</span><br><span class="line">            <span class="keyword">int</span> b = scan.nextInt();</span><br><span class="line">            System.out.println(a+b);</span><br><span class="line">            scan.nextLine();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>看一下nextLine改变了什么，当执行nextLine之前，position为3，就是数字5后面的字符</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317163748.png" alt="20210317163748"></p>
+<ol start="2">
+<li>当执行nextLine后，position为4，猜想当hasNextLine()遇见position为3的”\n”时，会返回true，而遇见position为4的”1”时，继续判断这一句，发现后面有”\n”，匹配成功，返回true。（假设牛客上的用例，每句末尾都有\n）</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317163918.png" alt="20210317163918"></p>
+<ol start="3">
+<li>但是，当运行到第二次循环时，nextLine()将position变为10，见下面两张图，hasNextLine()在第三次判断时，没有\n字符了，甚至什么也没有，也就返回false，程序结束。<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317164208.png" alt="20210317164208"></li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20210317164221.png" alt="20210317164221"></p>
+<h3 id="hasNextLine-IDEA-G题"><a href="#hasNextLine-IDEA-G题" class="headerlink" title="hasNextLine() IDEA G题"></a>hasNextLine() IDEA G题</h3><p>再看一个hasNextLine()的实验，在IDEA上实验题目G，输入用例1，发现结尾没有\n，hasNextLine()会等待输入，知道等到\n，当输入\n后，这个\n前面的这行0都被读入，但是接下来hasNextLine()仍然会等待\n，从而陷入无限循环；当输入用例2时，IDEA会正常通过三行hasNextLine()，到达第四次循环并等待输入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">G</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (scan.hasNextLine()) &#123; <span class="comment">//当前代码可以在牛客上通过</span></span><br><span class="line">            <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">            String s = scan.nextLine();</span><br><span class="line">            Scanner rowIn = <span class="keyword">new</span> Scanner(s);</span><br><span class="line">            <span class="keyword">while</span> (rowIn.hasNextInt()) &#123;</span><br><span class="line">                result += rowIn.nextInt();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">用例1：</span><br><span class="line">1 2 3</span><br><span class="line">4 5</span><br><span class="line">0 0 0 0 0</span><br><span class="line">用例1在IDEA中变量显示:&quot;1 2 3\n4 5\n0 0 0 0 0&quot;</span><br><span class="line">用例1在牛客中变量显示:&quot;1 2 34 50 0 0 0 0&quot;</span><br><span class="line">----</span><br><span class="line">用例2:</span><br><span class="line">1 2 3</span><br><span class="line">4 5</span><br><span class="line">0 0 0 0 0</span><br><span class="line"></span><br><span class="line">用例2在IDEA中变量显示:&quot;1 2 3\n4 5\n0 0 0 0 0\n&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="hasNextLine-牛客-G题"><a href="#hasNextLine-牛客-G题" class="headerlink" title="hasNextLine() 牛客 G题"></a>hasNextLine() 牛客 G题</h3><p>代码正常运行，因为有一句nextLine()，因此程序正常结束</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">G</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner scan = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (scan.hasNextLine()) &#123; <span class="comment">//当前代码可以在牛客上通过</span></span><br><span class="line">            <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">            String s = scan.nextLine();</span><br><span class="line">            Scanner rowIn = <span class="keyword">new</span> Scanner(s);</span><br><span class="line">            <span class="keyword">while</span> (rowIn.hasNextInt()) &#123;</span><br><span class="line">                result += rowIn.nextInt();</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>综上，在使用Scanner进行输入输出时，尽量避免使用hasNextLine()。以下参考在查阅资料时给了很大启发，附在下面。（但是有些函数在牛客可以结束，但是在IDEA就无线等待输入还是没搞清楚）</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/8050">https://www.nowcoder.com/discuss/8050</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36242811/article/details/105463062">https://blog.csdn.net/weixin_36242811/article/details/105463062</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/02/02/Test/conda%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">Java输入输出方法总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scanner%E5%BA%93"><span class="nav-number">1.1.</span> <span class="nav-text">Scanner库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#next-%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.2.</span> <span class="nav-text">next()函数用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nextLine-%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">nextLine()函数用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNext"><span class="nav-number">1.1.4.</span> <span class="nav-text">hasNext()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextLine"><span class="nav-number">1.1.5.</span> <span class="nav-text">hasNextLine()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextInt"><span class="nav-number">1.1.6.</span> <span class="nav-text">hasNextInt()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%89%9B%E5%AE%A2%E7%BD%91%E5%92%8CIDEA%E7%9A%84%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E4%B8%8D%E5%90%8C%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.2.</span> <span class="nav-text">关于牛客网和IDEA的实验结果不同的原因</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNext-IDEA-A%E9%A2%98"><span class="nav-number">1.2.1.</span> <span class="nav-text">hasNext() IDEA A题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNext-%E7%89%9B%E5%AE%A2-A%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">hasNext() 牛客 A题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextLine-IDEA-A%E9%A2%98"><span class="nav-number">1.2.3.</span> <span class="nav-text">hasNextLine() IDEA A题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextLine-%E7%89%9B%E5%AE%A2-A%E9%A2%98"><span class="nav-number">1.2.4.</span> <span class="nav-text">hasNextLine() 牛客 A题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextLine-IDEA-G%E9%A2%98"><span class="nav-number">1.2.5.</span> <span class="nav-text">hasNextLine() IDEA G题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasNextLine-%E7%89%9B%E5%AE%A2-G%E9%A2%98"><span class="nav-number">1.2.6.</span> <span class="nav-text">hasNextLine() 牛客 G题</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yang Zeyu</p>
+  <div class="site-description" itemprop="description">打工人，打工魂，打工都是人上人!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yang Zeyu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

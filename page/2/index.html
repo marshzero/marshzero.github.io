@@ -157,6 +157,74 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%20Failed%20to%20mount%20%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/21/%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%20Failed%20to%20mount%20%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">移动硬盘 Failed to mount 输入输出错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-21 17:59:59 / 修改时间：16:27:55" itemprop="dateCreated datePublished" datetime="2020-11-21T17:59:59+08:00">2020-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="移动硬盘报错：Failed-to-mount-‘-dev-sda1’-输入-输出错误"><a href="#移动硬盘报错：Failed-to-mount-‘-dev-sda1’-输入-输出错误" class="headerlink" title="移动硬盘报错：Failed to mount ‘_dev_sda1’_ 输入_输出错误"></a>移动硬盘报错：Failed to mount ‘_dev_sda1’_ 输入_输出错误</h1><p>在终端输入sudo ntfsfix /dev/sda1修复即可</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/20/hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -242,7 +310,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;marshzero&quot;</span><br><span class="line">git config --global user.email &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
 <p>生成ssh key</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;xxxxxxx@qq.com&quot;</span><br></pre></td></tr></table></figure>
-<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
+<p>windows下打开C:/用户名/.ssh/id_rsa.pub。记事本打开并复制里面的内容，打开你的github主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key：将刚复制的内容粘贴到key那里，名字可以写成blog或其他你能明白的名字。<br>输入ssh -T <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#116;&#64;&#x67;&#105;&#116;&#104;&#117;&#x62;&#46;&#99;&#x6f;&#x6d;</a>，如果出现你的用户名，那就成功了。</p>
 <h2 id="hexo-部署到-github"><a href="#hexo-部署到-github" class="headerlink" title="hexo 部署到 github"></a>hexo 部署到 github</h2><p>首先，ssh key肯定要配置好。其次，配置_config.yml中有关deploy的部分：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 <p>使用以下命令生成静态文件</p>
@@ -1035,92 +1103,6 @@ property list uchar int vertex_indices</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/26/ubuntu%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="打工人，打工魂，打工都是人上人!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/10/26/ubuntu%E5%8A%A0%E6%96%B0%E7%A1%AC%E7%9B%98/" class="post-title-link" itemprop="url">ubuntu加新硬盘</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-10-26 23:58:45" itemprop="dateCreated datePublished" datetime="2020-10-26T23:58:45+08:00">2020-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-03 16:30:03" itemprop="dateModified" datetime="2020-11-03T16:30:03+08:00">2020-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ubuntu加装新机械硬盘并配置挂载"><a href="#ubuntu加装新机械硬盘并配置挂载" class="headerlink" title="ubuntu加装新机械硬盘并配置挂载"></a>ubuntu加装新机械硬盘并配置挂载</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>因为最近要用的数据集太大了，所以加了一块2T的机械硬盘，专门用来放这个数据集。</p>
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>将机械硬盘装到电脑上，注意机箱的打开方式…一般硬盘放在侧面，和电源在一个面，需要电源的供电线和传输数据的SATA线。</p>
-<h2 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h2><h3 id="1-开机进入ubuntu系统，使用以下命令查看硬盘情况："><a href="#1-开机进入ubuntu系统，使用以下命令查看硬盘情况：" class="headerlink" title="1.开机进入ubuntu系统，使用以下命令查看硬盘情况："></a>1.开机进入ubuntu系统，使用以下命令查看硬盘情况：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  fdisk  -l</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/fdisk.png" alt="fdisk"></p>
-<h3 id="2-可以看到-dev-sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）："><a href="#2-可以看到-dev-sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）：" class="headerlink" title="2.可以看到/dev/sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）："></a>2.可以看到/dev/sda是我们的加的新硬盘，使用以下命令格式化硬盘（一定确定硬盘的目录编号！！！否则格式了系统盘就GG）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkfs.ext4  &#x2F;dev&#x2F;sda</span><br></pre></td></tr></table></figure>
-<p>或者使用ubuntu已经安装的disk软件进行图形化界面操作（推荐用命令）</p>
-<h3 id="3-我的硬盘是直接在-media-datadisk有了挂载点，没有的话就自己创建挂载点"><a href="#3-我的硬盘是直接在-media-datadisk有了挂载点，没有的话就自己创建挂载点" class="headerlink" title="3.我的硬盘是直接在/media/datadisk有了挂载点，没有的话就自己创建挂载点"></a>3.我的硬盘是直接在/media/datadisk有了挂载点，没有的话就自己创建挂载点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;home&#x2F;sda1 #示例用，后续代码不用此挂载点</span><br></pre></td></tr></table></figure>
-<h3 id="4-查看硬盘的UUID"><a href="#4-查看硬盘的UUID" class="headerlink" title="4.查看硬盘的UUID"></a>4.查看硬盘的UUID</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo blkid</span><br></pre></td></tr></table></figure>
-<p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/blkid.png" alt="blkid"></p>
-<h3 id="5-编辑系统挂载配置文件-etc-fstab"><a href="#5-编辑系统挂载配置文件-etc-fstab" class="headerlink" title="5.编辑系统挂载配置文件/etc/fstab"></a>5.编辑系统挂载配置文件/etc/fstab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit etc&#x2F;fstab</span><br></pre></td></tr></table></figure>
-<p>添加新的挂载项，这样开机就挂载了（一定按图示，第一项使用UUID，不要用/dev/sda这种目录形式，第二项挂载点，第三项ext4，写成ext3我就进不去系统，后面是0 2）<br><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/addfastab.png" alt="addfastab"></p>
-<h3 id="6-修改硬盘权限"><a href="#6-修改硬盘权限" class="headerlink" title="6.修改硬盘权限"></a>6.修改硬盘权限</h3><p>其中lab是用户，777是完全权限，这一步骤是可以让非root用户对新硬盘有操作权限</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R lab &#x2F;media&#x2F;datadisk</span><br><span class="line">sudo chmod -R 777 &#x2F;media&#x2F;datadisk</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1190,15 +1172,13 @@ property list uchar int vertex_indices</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
