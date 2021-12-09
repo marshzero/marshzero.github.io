@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -153,6 +153,97 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/09/Hexo%20NexT%20%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%20%E7%B1%BBMeme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/09/Hexo%20NexT%20%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%20%E7%B1%BBMeme/" class="post-title-link" itemprop="url">Hexo NexT 字体美化 类Meme</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-09 18:22:52 / 修改时间：18:24:22" itemprop="dateCreated datePublished" datetime="2021-12-09T18:22:52+08:00">2021-12-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在网上逛到了用Hugo做的博客，发现Meme主题很好看，研究了一会，发现主要是字体好看，也不打算迁移了，于是便开始设置Hexo的NexT主题为相应的字体。</p>
+<p>本人配置：</p>
+<ul>
+<li>Win10</li>
+<li>hexo: 5.2.0</li>
+<li>hexo-cli: 4.2.0</li>
+<li>node: 12.19.0</li>
+<li>NexT主题Pisces样式</li>
+</ul>
+<h2 id="更换字体"><a href="#更换字体" class="headerlink" title="更换字体"></a>更换字体</h2><p>Hugo Meme主题字体：<code>思源宋体 Noto Serif Simplified Chinese</code></p>
+<p>Google Font：<a target="_blank" rel="noopener" href="https://fonts.google.com/noto/specimen/Noto+Serif+SC">https://fonts.google.com/noto/specimen/Noto+Serif+SC</a></p>
+<p>在Hexo Next中更改字体样式，只需要更改NexT的配置文件themes\next_config.yml</p>
+<p>将font的enable改为true，并将其中所有的模块的字体都写上Noto Serif SC，这样hexo会自动从<a target="_blank" rel="noopener" href="https://fonts.googleapis.com/">fonts host</a>获取字体</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Font Settings</span></span><br><span class="line"><span class="comment"># See: https://theme-next.org/docs/theme-settings/#Fonts-Customization</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Find fonts on Google Fonts (https://www.google.com/fonts)</span></span><br><span class="line"><span class="comment"># All fonts set here will have the following styles:</span></span><br><span class="line"><span class="comment">#   light | light italic | normal | normal italic | bold | bold italic</span></span><br><span class="line"><span class="comment"># Be aware that setting too much fonts will cause site running slowly</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># To avoid space between header and sidebar in scheme Pisces / Gemini, Web Safe fonts are recommended for `global` (and `title`):</span></span><br><span class="line"><span class="comment"># Arial | Tahoma | Helvetica | Times New Roman | Courier New | Verdana | Georgia | Palatino | Garamond | Comic Sans MS | Trebuchet MS</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="attr">font:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font options:</span></span><br><span class="line">  <span class="comment"># `external: true` will load this font family from `host` above.</span></span><br><span class="line">  <span class="comment"># `family: Times New Roman`. Without any quotes.</span></span><br><span class="line">  <span class="comment"># `size: x.x`. Use `em` as unit. Default: 1 (16px)</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Global font settings used for all elements inside &lt;body&gt;.</span></span><br><span class="line">  <span class="attr">global:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Noto</span> <span class="string">Serif</span> <span class="string">SC</span></span><br><span class="line">    <span class="attr">size:</span> </span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for site title (.site-title).</span></span><br><span class="line">  <span class="attr">title:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Noto</span> <span class="string">Serif</span> <span class="string">SC</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span></span><br><span class="line">  <span class="attr">headings:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Noto</span> <span class="string">Serif</span> <span class="string">SC</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for posts (.post-body).</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Noto</span> <span class="string">Serif</span> <span class="string">SC</span></span><br><span class="line">    <span class="attr">size:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Font settings for &lt;code&gt; and code blocks.</span></span><br><span class="line">  <span class="attr">codes:</span></span><br><span class="line">    <span class="attr">external:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Source</span> <span class="string">Code</span> <span class="string">Pro</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更改字体大小"><a href="#更改字体大小" class="headerlink" title="更改字体大小"></a>更改字体大小</h2><p>问题：hexo next字体大小更改后无效</p>
+<p>换完了字体，设置的字体大小明明默认是1em，也就是16px，但正文字体很大，有1.125em，也就是18px。</p>
+<p>谷歌了一下，查到除了上方themes\next_config.yml可以配置字体样式和大小，还有一个直接控制字体的文件themes\next\source\css_variables\base.styl</p>
+<p>如下就是默认配置，可以看到没什么问题，正文就应该是1em。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Font size</span></span><br><span class="line">$font-size-base           = (hexo-config(&#x27;font.enable&#x27;) and hexo-config(&#x27;font.global.size&#x27;) is a &#x27;unit&#x27;) ? unit(hexo-config(&#x27;font.global.size&#x27;), em) : 1em;</span><br><span class="line">$font-size-smallest       = .75em;</span><br><span class="line">$font-size-smaller        = .8125em;</span><br><span class="line">$font-size-small          = .875em;</span><br><span class="line">$font-size-medium         = 1em;</span><br><span class="line">$font-size-large          = 1.125em;</span><br><span class="line">$font-size-larger         = 1.25em;</span><br><span class="line">$font-size-largest        = 1.5em;</span><br></pre></td></tr></table></figure>
+
+<p>问题定位：既然网页上正文字体的样式是1.125em，直接在themes中查1.125em，发现只有上方代码里的<code>font-size-large</code>是1.125。于是搜索font-size-large，终于被我逮到了，说的就是你themes\next\source\css_common\components\post\post.styl</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post-body</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="variable">$font</span>-family-posts;</span><br><span class="line">  <span class="attribute">word-wrap</span>();</span><br><span class="line"></span><br><span class="line">  +desktop-large() &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font</span>-size-large ;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.exturl</span> <span class="selector-class">.fa</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font</span>-size-small;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">4px</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.image-caption</span>, <span class="selector-class">.figure</span> <span class="selector-class">.caption</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="variable">$grey</span>-dark;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="variable">$font</span>-size-small;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">margin</span>: -<span class="number">20px</span> auto <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意5-7行代码，这个文件默认配置的正文字体大小是font-size-large，怪不得正文不是1em，改成font-size-medium就好了。</p>
+<h2 id="更改代码块字体"><a href="#更改代码块字体" class="headerlink" title="更改代码块字体"></a>更改代码块字体</h2><p>将themes\next\source\css_variables\base.styl文件中table-font-size改为80%，这样代码块字体就自动调整为正文的80%</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Table</span></span><br><span class="line"><span class="comment">// --------------------------------------------------</span></span><br><span class="line"><span class="variable">$table</span>-<span class="attribute">border-color</span>             = <span class="variable">$grey</span>-lighter;</span><br><span class="line"><span class="variable">$table</span>-<span class="attribute">font-size</span>                = <span class="variable">$font</span>-size-small;</span><br><span class="line"><span class="variable">$table</span>-cell-<span class="attribute">border-bottom-color</span> = <span class="variable">$grey</span>-lighter;</span><br><span class="line"><span class="variable">$table</span>-row-odd-bg-<span class="attribute">color</span>         = <span class="number">#f9f9f9</span>;</span><br><span class="line"><span class="variable">$table</span>-row-odd-bg-<span class="attribute">color</span>-dark    = <span class="number">#282828</span>;</span><br><span class="line"><span class="variable">$table</span>-row-hover-bg-<span class="attribute">color</span>       = <span class="variable">$whitesmoke</span>;</span><br><span class="line"><span class="variable">$table</span>-row-hover-bg-<span class="attribute">color</span>-dark  = <span class="number">#363636</span>;</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://theme-next.iissnan.com/theme-settings.html#fonts-customization">官方文档-设置字体</a></li>
+<li><a target="_blank" rel="noopener" href="https://spartazhc.github.io/2020/06/03/Next%E4%B8%BB%E9%A2%98%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE/">Hexo Next 主题字体相关配置</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -364,100 +455,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/02/Test/conda%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/02/02/Test/conda%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-02-02 23:55:25" itemprop="dateCreated datePublished" datetime="2021-02-02T23:55:25+08:00">2021-02-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-28 19:14:28" itemprop="dateModified" datetime="2020-11-28T19:14:28+08:00">2020-11-28</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="conda使用总结"><a href="#conda使用总结" class="headerlink" title="conda使用总结"></a>conda使用总结</h1><h2 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h2><p>官网：<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">https://mirror.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
-<p>Ubuntu系统可以使用如下命令修改用户目录下的 .condarc 文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.condarc</span><br></pre></td></tr></table></figure>
-
-<p>将如下命令添加到文件中即可</p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">channel_alias: https://mirrors.tuna.tsinghua.edu.cn/anaconda</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
-
-<p>运行 conda clean -i 清除索引缓存，保证用的是镜像站提供的索引。</p>
-<p>运行 conda create -n myenv numpy 测试一下吧。</p>
-<h2 id="创建环境"><a href="#创建环境" class="headerlink" title="创建环境"></a>创建环境</h2><p>创建一个名为envirment_name的虚拟环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n envirment_name</span><br></pre></td></tr></table></figure>
-
-<h2 id="激活环境"><a href="#激活环境" class="headerlink" title="激活环境"></a>激活环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate envirment_name</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>安装3.6版本的python</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install python==3.6</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda uninstall python</span><br></pre></td></tr></table></figure>
-
-<h2 id="删除环境"><a href="#删除环境" class="headerlink" title="删除环境"></a>删除环境</h2><p>删除envirment_name这个环境的所有内容，-n指定环境名，–all代表删除全部内容。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n envirment_name --all</span><br></pre></td></tr></table></figure>
-
-<h2 id="使用yml创建环境"><a href="#使用yml创建环境" class="headerlink" title="使用yml创建环境"></a>使用yml创建环境</h2><p>conda可以通过config文件指定包的版本来创建环境，例如使用如下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create --file environment.yml</span><br></pre></td></tr></table></figure>
-
-<p>其中environment.yml文件中的信息如下</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">envirment_name</span></span><br><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">defaults</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">conda-forge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">pytorch</span></span><br><span class="line"><span class="attr">dependencies:</span>         <span class="comment"># everything under this, installed by conda</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">python=3.6</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">pip</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">pytorch=1.2.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">torchvision=0.4.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cudatoolkit=10.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">pip:</span>                <span class="comment"># everything under this, installed by pip</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">open3d==0.8.0</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="清理conda无用的包和缓存"><a href="#清理conda无用的包和缓存" class="headerlink" title="清理conda无用的包和缓存"></a>清理conda无用的包和缓存</h2><p>cache目录在/home/username/.conda/pkgs。可以使用-p来删除没有用到的包，想删除干净点就用-y –all来删除所有下载的包和缓存。想看更多选项可以-h看帮助文档。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda clean -p      //删除没有用的包</span><br><span class="line">conda clean -y -all //删除所有的安装包及cache</span><br><span class="line">conda clean -i      //删除索引缓存</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/02/conda%20%E5%AE%89%E8%A3%85%E6%9C%AC%E5%9C%B0%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -514,6 +511,100 @@
 
 <p>之后在这个包存放的目录下，切换到自己的环境中，使用以下命令安装本地包：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install --use-local  boost-1.59.0-py27_0.tar.bz2</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/02/Test/conda%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/02/Test/conda%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">conda使用总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-02 18:22:52" itemprop="dateCreated datePublished" datetime="2021-02-02T18:22:52+08:00">2021-02-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-09 18:28:15" itemprop="dateModified" datetime="2021-12-09T18:28:15+08:00">2021-12-09</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="清华源"><a href="#清华源" class="headerlink" title="清华源"></a>清华源</h2><p>官网：<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/">https://mirror.tuna.tsinghua.edu.cn/help/anaconda/</a></p>
+<p>Ubuntu系统可以使用如下命令修改用户目录下的 .condarc 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.condarc</span><br></pre></td></tr></table></figure>
+
+<p>将如下命令添加到文件中即可</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">channel_alias: https://mirrors.tuna.tsinghua.edu.cn/anaconda</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/pro</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure>
+
+<p>运行 conda clean -i 清除索引缓存，保证用的是镜像站提供的索引。</p>
+<p>运行 conda create -n myenv numpy 测试一下吧。</p>
+<h2 id="创建环境"><a href="#创建环境" class="headerlink" title="创建环境"></a>创建环境</h2><p>创建一个名为envirment_name的虚拟环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n envirment_name</span><br></pre></td></tr></table></figure>
+
+<h2 id="激活环境"><a href="#激活环境" class="headerlink" title="激活环境"></a>激活环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate envirment_name</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p>安装3.6版本的python</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install python==3.6</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除包"><a href="#删除包" class="headerlink" title="删除包"></a>删除包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda uninstall python</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除环境"><a href="#删除环境" class="headerlink" title="删除环境"></a>删除环境</h2><p>删除envirment_name这个环境的所有内容，-n指定环境名，–all代表删除全部内容。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n envirment_name --all</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用yml创建环境"><a href="#使用yml创建环境" class="headerlink" title="使用yml创建环境"></a>使用yml创建环境</h2><p>conda可以通过config文件指定包的版本来创建环境，例如使用如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env create --file environment.yml</span><br></pre></td></tr></table></figure>
+
+<p>其中environment.yml文件中的信息如下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">envirment_name</span></span><br><span class="line"><span class="attr">channels:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">defaults</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">conda-forge</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">pytorch</span></span><br><span class="line"><span class="attr">dependencies:</span>         <span class="comment"># everything under this, installed by conda</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">python=3.6</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">pip</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">pytorch=1.2.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">torchvision=0.4.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cudatoolkit=10.0</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">pip:</span>                <span class="comment"># everything under this, installed by pip</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">open3d==0.8.0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="清理conda无用的包和缓存"><a href="#清理conda无用的包和缓存" class="headerlink" title="清理conda无用的包和缓存"></a>清理conda无用的包和缓存</h2><p>cache目录在/home/username/.conda/pkgs。可以使用-p来删除没有用到的包，想删除干净点就用-y –all来删除所有下载的包和缓存。想看更多选项可以-h看帮助文档。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda clean -p      //删除没有用的包</span><br><span class="line">conda clean -y -all //删除所有的安装包及cache</span><br><span class="line">conda clean -i      //删除索引缓存</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -1020,92 +1111,6 @@ D:\6_code</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/21/hexo%E8%B8%A9%E5%9D%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/21/hexo%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">hexo踩坑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-11-21 17:59:59 / 修改时间：16:31:42" itemprop="dateCreated datePublished" datetime="2020-11-21T17:59:59+08:00">2020-11-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">软件配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="npm安装没反应及RollbackFailedOptional-Verb-Npm-Session错误"><a href="#npm安装没反应及RollbackFailedOptional-Verb-Npm-Session错误" class="headerlink" title="npm安装没反应及RollbackFailedOptional Verb Npm-Session错误"></a>npm安装没反应及RollbackFailedOptional Verb Npm-Session错误</h2><p>Npm安装报错 RollbackFailedOptional Verb Npm-Session<br>设置了cmd、git、npm代理，结果还是报错，最后换了一下源，更换为淘宝的源</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry http:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-
-<p>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zwrsnrt/p/12492482.html">https://www.cnblogs.com/zwrsnrt/p/12492482.html</a></p>
-<h2 id="hexo使用theme无法渲染页面问题"><a href="#hexo使用theme无法渲染页面问题" class="headerlink" title="hexo使用theme无法渲染页面问题"></a>hexo使用theme无法渲染页面问题</h2><p>新版本hexo在使用主题时，生成页面发现无法正常显示，出现以下未渲染成功的源代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#39;&#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;&#39;</span><br></pre></td></tr></table></figure>
-<p>查看显示的代码以及主题目录下的layout模板，发现hexo在新版本使用 Nunjucks 来渲染页面，但是很多主题还是旧版本hexo时编写的，使用的是Swig，所以页面没有正常使用swig渲染好，我们使用以下命令装上swig就好了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
-<p>参考：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39898645/article/details/109181736">https://blog.csdn.net/qq_39898645/article/details/109181736</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/p/1210000010636536/read">https://segmentfault.com/p/1210000010636536/read</a></p>
-<h2 id="hexo-Error-Deployer-not-found-git"><a href="#hexo-Error-Deployer-not-found-git" class="headerlink" title="hexo Error Deployer not found: git"></a>hexo Error Deployer not found: git</h2><p><img src="https://raw.githubusercontent.com/Marshzero/PicBed/master/images/20201027001057.png" alt="20201027001057"><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36401046/article/details/52940313">https://blog.csdn.net/weixin_36401046/article/details/52940313</a></p>
-<p>npm install –save hexo-deployer-git</p>
-<h2 id="Template-render-error-unknown-path"><a href="#Template-render-error-unknown-path" class="headerlink" title="Template render error: (unknown path)"></a>Template render error: (unknown path)</h2><p>有两种可能，一种是config.yml中没使用正确的缩进空格，一种是文章中有</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;，&#123;% %&#125;</span><br></pre></td></tr></table></figure>
-<p>这种hexo无法转义的字符</p>
-<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="config.yml"></a>config.yml</h3><p>官方的示例如下<br>The error one:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">- hexo- generator-feed</span><br><span class="line">- hexo-generator-sitemap</span><br></pre></td></tr></table></figure>
-<p>The correct one:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">  - hexo-generator-feed</span><br><span class="line">  - hexo-generator-sitemap</span><br></pre></td></tr></table></figure>
-<h3 id="文章有无法转义字符"><a href="#文章有无法转义字符" class="headerlink" title="文章有无法转义字符"></a>文章有无法转义字符</h3><p>将无法转义的句子用代码块括住</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1175,7 +1180,7 @@ D:\6_code</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1186,7 +1191,7 @@ D:\6_code</code></pre>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
