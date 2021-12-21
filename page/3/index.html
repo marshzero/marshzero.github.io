@@ -154,6 +154,80 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/Terminal%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/27/Terminal%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86/" class="post-title-link" itemprop="url">Terminal设置代理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-10-27 00:00:41" itemprop="dateCreated datePublished" datetime="2020-10-27T00:00:41+08:00">2020-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-14 19:46:51" itemprop="dateModified" datetime="2021-12-14T19:46:51+08:00">2021-12-14</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="CMD设置代理"><a href="#CMD设置代理" class="headerlink" title="CMD设置代理"></a>CMD设置代理</h2><h3 id="1-打开cmd，在cmd中输入以下命令实现代理。"><a href="#1-打开cmd，在cmd中输入以下命令实现代理。" class="headerlink" title="1. 打开cmd，在cmd中输入以下命令实现代理。"></a>1. 打开cmd，在cmd中输入以下命令实现代理。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:1080</span><br><span class="line">set https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h3 id="2-如果你的代理服务器要求用户名和密码的话，那么还需要："><a href="#2-如果你的代理服务器要求用户名和密码的话，那么还需要：" class="headerlink" title="2. 如果你的代理服务器要求用户名和密码的话，那么还需要："></a>2. 如果你的代理服务器要求用户名和密码的话，那么还需要：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy_user&#x3D;</span><br><span class="line">set http_proxy_pass&#x3D;</span><br></pre></td></tr></table></figure>
+<h3 id="3-如果取消cmd代理，则将值设为空重新配置一下就好了，例如："><a href="#3-如果取消cmd代理，则将值设为空重新配置一下就好了，例如：" class="headerlink" title="3. 如果取消cmd代理，则将值设为空重新配置一下就好了，例如："></a>3. 如果取消cmd代理，则将值设为空重新配置一下就好了，例如：</h3> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set http_proxy&#x3D;</span><br><span class="line">set https_proxy&#x3D;</span><br></pre></td></tr></table></figure>
+<h2 id="git-bash设置代理"><a href="#git-bash设置代理" class="headerlink" title="git bash设置代理"></a>git bash设置代理</h2><h3 id="1-打开git-bash，输入以下命令"><a href="#1-打开git-bash，输入以下命令" class="headerlink" title="1. 打开git bash，输入以下命令"></a>1. 打开git bash，输入以下命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global https.proxy http:&#x2F;&#x2F;127.0.0.1:1080</span><br><span class="line">git config --global https.proxy https:&#x2F;&#x2F;127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h3 id="2-取消代理则输入以下命令："><a href="#2-取消代理则输入以下命令：" class="headerlink" title="2. 取消代理则输入以下命令："></a>2. 取消代理则输入以下命令：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+<h3 id="3-也可以设置sock5代理"><a href="#3-也可以设置sock5代理" class="headerlink" title="3. 也可以设置sock5代理"></a>3. 也可以设置sock5代理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy &#39;socks5:&#x2F;&#x2F;127.0.0.1:1080&#39;</span><br><span class="line">git config --global https.proxy &#39;socks5:&#x2F;&#x2F;127.0.0.1:1080&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="4-另外设置git-bash代理也可以找到git的配置文件，一般在C-Users-XXX-gitconfig"><a href="#4-另外设置git-bash代理也可以找到git的配置文件，一般在C-Users-XXX-gitconfig" class="headerlink" title="4. 另外设置git bash代理也可以找到git的配置文件，一般在C:\Users\XXX\.gitconfig"></a>4. 另外设置git bash代理也可以找到git的配置文件，一般在C:\Users\XXX\.gitconfig</h3><h3 id="5-当git-bash使用网络命令长时间无反应或者返回403或超时等信息，检查一下代理是否设置正确，查看git配置文件或者使用以下代码查看代理："><a href="#5-当git-bash使用网络命令长时间无反应或者返回403或超时等信息，检查一下代理是否设置正确，查看git配置文件或者使用以下代码查看代理：" class="headerlink" title="5. 当git bash使用网络命令长时间无反应或者返回403或超时等信息，检查一下代理是否设置正确，查看git配置文件或者使用以下代码查看代理："></a>5. 当git bash使用网络命令长时间无反应或者返回403或超时等信息，检查一下代理是否设置正确，查看git配置文件或者使用以下代码查看代理：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --get http.proxy </span><br><span class="line">git config --get https.proxy</span><br><span class="line">参考：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;cbugs&#x2F;p&#x2F;12257443.html</span><br></pre></td></tr></table></figure>
+<h2 id="npm设置代理"><a href="#npm设置代理" class="headerlink" title="npm设置代理"></a>npm设置代理</h2><h3 id="1-设置npm代理，则在cmd或者git-bash中输入以下命令"><a href="#1-设置npm代理，则在cmd或者git-bash中输入以下命令" class="headerlink" title="1. 设置npm代理，则在cmd或者git bash中输入以下命令"></a>1. 设置npm代理，则在cmd或者git bash中输入以下命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:1080</span><br><span class="line">npm config set https-proxy http:&#x2F;&#x2F;127.0.0.1:1080</span><br></pre></td></tr></table></figure>
+<h3 id="2-更换npm源，换成淘宝源-推荐，关于没换源装东西报错请看这里"><a href="#2-更换npm源，换成淘宝源-推荐，关于没换源装东西报错请看这里" class="headerlink" title="2. 更换npm源，换成淘宝源(推荐，关于没换源装东西报错请看这里)"></a>2. 更换npm源，换成淘宝源(推荐，关于没换源装东西报错请看<a target="_blank" rel="noopener" href="https://www.runoob.com/">这里</a>)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https:&#x2F;&#x2F;registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<h3 id="3-npm取消代理"><a href="#3-npm取消代理" class="headerlink" title="3. npm取消代理"></a>3. npm取消代理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config delete proxy</span><br><span class="line">npm config delete https-proxy</span><br></pre></td></tr></table></figure>
+<h3 id="4-npm设置代理用户名和密码"><a href="#4-npm设置代理用户名和密码" class="headerlink" title="4. npm设置代理用户名和密码"></a>4. npm设置代理用户名和密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set proxy http:&#x2F;&#x2F;username:password@server:port</span><br><span class="line">npm confit set https-proxy http:&#x2F;&#x2F;username:password@server:port</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/27/ubuntu%E5%9B%A0%E7%A1%AC%E7%9B%98%E6%8C%82%E8%BD%BD%E8%BF%9B%E5%85%A5Emergency-mode%E7%B4%A7%E6%80%A5%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -647,14 +721,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

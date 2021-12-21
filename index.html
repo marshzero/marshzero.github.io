@@ -154,6 +154,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/Typora%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93%E4%BB%A5%E5%8F%8A%E5%85%B3%E9%97%AD%E8%BF%9E%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yang Zeyu">
+      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzy's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/21/Typora%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93%E4%BB%A5%E5%8F%8A%E5%85%B3%E9%97%AD%E8%BF%9E%E5%AD%97/" class="post-title-link" itemprop="url">Typora修改字体以及关闭连字</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-21 20:32:19 / 修改时间：20:53:29" itemprop="dateCreated datePublished" datetime="2021-12-21T20:32:19+08:00">2021-12-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>Typora修改字体可在css文件中改动字体，我的环境如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">系统：Windows 10 家庭中文版</span><br><span class="line">客户端：Typora for Windows 0.11.18</span><br><span class="line">主题：Drake</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、修改字体样式"><a href="#二、修改字体样式" class="headerlink" title="二、修改字体样式"></a>二、修改字体样式</h2><p>将如下文件中的<code>--monospace</code>改为想要的字体，按顺序进行优先启用字体。我这里采用<code>Fira Code Retina</code>为英文字体，<code>Noto Serif SC</code>作为中文字体。</p>
+<p><strong>注意</strong>：需要安装对应字体，字体文件解压到drake主题文件夹内，或者win平台下载字体后双击进行安装。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* theme/drake.css */</span></span><br><span class="line"><span class="selector-pseudo">::root</span> &#123;</span><br><span class="line">    <span class="attribute">--monospace</span>: <span class="string">&quot;Fira Code Retina&quot;</span>, <span class="string">&quot;Noto Serif SC&quot;</span>; <span class="comment">/*code font*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、修改代码块字体大小"><a href="#三、修改代码块字体大小" class="headerlink" title="三、修改代码块字体大小"></a>三、修改代码块字体大小</h2><p>我的字体在Typora中设置为18px，因为是笔记本2k屏，16px会有点小。下面是代码块的设置，改动了代码块字体为正文字体的95%，并且调整代码块行高为1.6rem，总体看着比较舒服。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* theme/drake.css */</span></span><br><span class="line"><span class="comment">/*code block*/</span></span><br><span class="line"><span class="selector-class">.md-fences</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0.95rem</span>; <span class="comment">/* 修改了代码块字体大小，和正文字体大小有所区分 */</span></span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5rem</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line">    <span class="attribute">word-wrap</span>: normal;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="built_in">var</span>(--code-block-bg-color);</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--code-block-color);</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.6rem</span>; <span class="comment">/* 修改了代码块行高 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、Fira-Code-Close-ligatures-关闭连字"><a href="#四、Fira-Code-Close-ligatures-关闭连字" class="headerlink" title="四、Fira Code Close ligatures 关闭连字"></a>四、Fira Code Close ligatures 关闭连字</h2><p>连字这个特性有的程序员喜欢，有的不喜欢。这里给出两种关闭的方式：</p>
+<ol>
+<li><p>代码块启用连字，正文关闭连字</p>
+<p>首先在<code>theme/drake.css</code>文件中将<code>-webkit-font-feature-settings: &quot;liga&quot; on, &quot;calt&quot; on;</code>此句话注释掉。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* theme/drake.css */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="built_in">var</span>(--text-font) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--text-color);</span><br><span class="line">    <span class="comment">/* 注释此处</span></span><br><span class="line"><span class="comment">    -webkit-font-feature-settings: &quot;liga&quot; on, &quot;calt&quot; on;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="attribute">-webkit-font-smoothing</span>: subpixel-antialiased;</span><br><span class="line">    <span class="attribute">text-rendering</span>: optimizeLegibility;</span><br><span class="line">    <span class="attribute">letter-spacing</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.8rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在theme文件夹中新建<code>base.user.css</code>文件，添加如下代码，即可实现代码块启动连字，正文关闭连字</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-variant-ligatures</span>: none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>正文和代码块完全关闭连字</p>
+<p>在<code>theme/drake.css</code>文件中，将<code>-webkit-font-feature-settings:</code>的<code>liga</code>和<code>calt</code>属性都改为<code>off</code>，即可实现完全关闭连字。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* theme/drake.css */</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="built_in">var</span>(--text-font) <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">var</span>(--text-color);</span><br><span class="line">    <span class="attribute">-webkit-font-feature-settings</span>: <span class="string">&quot;liga&quot;</span> off, <span class="string">&quot;calt&quot;</span> off;</span><br><span class="line">    <span class="attribute">-webkit-font-smoothing</span>: subpixel-antialiased;</span><br><span class="line">    <span class="attribute">text-rendering</span>: optimizeLegibility;</span><br><span class="line">    <span class="attribute">letter-spacing</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.8rem</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>键盘名称</th>
+<th>价格</th>
+<th>轴体</th>
+<th>蓝牙</th>
+<th>热插拔</th>
+<th>键帽材质</th>
+<th>光</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RK84</td>
+<td>249</td>
+<td>高特轴</td>
+<td>三模</td>
+<td>支持</td>
+<td>ABS</td>
+<td>白光</td>
+</tr>
+<tr>
+<td>京东京造k2</td>
+<td>388</td>
+<td>隆茶轴</td>
+<td>双模</td>
+<td>不支持</td>
+<td>ABS</td>
+<td>白光</td>
+</tr>
+<tr>
+<td>高斯ALT83D</td>
+<td>399</td>
+<td>cherry茶轴</td>
+<td>双模</td>
+<td>不支持</td>
+<td>PBT</td>
+<td>无光</td>
+</tr>
+<tr>
+<td>AKKO 9009</td>
+<td>479</td>
+<td>cherry茶轴</td>
+<td>有线</td>
+<td>不支持</td>
+<td>PBT</td>
+<td>无光</td>
+</tr>
+<tr>
+<td>凯酷</td>
+<td>489</td>
+<td>ttc金粉轴</td>
+<td>双模</td>
+<td>支持</td>
+<td>PBT</td>
+<td>RGB</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/09/Hexo%20NexT%20%E5%AD%97%E4%BD%93%E7%BE%8E%E5%8C%96%20%E7%B1%BBMeme/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1020,73 +1161,6 @@ D:\6_code</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/python%E5%8A%A0%E4%B8%8A%E6%B3%A8%E9%87%8A%E8%BF%98%E6%98%AF%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Yang Zeyu">
-      <meta itemprop="description" content="种一棵树最好的时间是十年前，其次是现在。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yzy's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/23/python%E5%8A%A0%E4%B8%8A%E6%B3%A8%E9%87%8A%E8%BF%98%E6%98%AF%E4%B8%AD%E6%96%87%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">python加上注释还是中文报错</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-23 14:26:01" itemprop="dateCreated datePublished" datetime="2020-11-23T14:26:01+08:00">2020-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-14 19:46:04" itemprop="dateModified" datetime="2021-12-14T19:46:04+08:00">2021-12-14</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先要确保编辑器环境的编码为utf8，打开编码和保存编码都是utf8；其次如果py文件中含有中文字符的话，需要在py文件中对编码进行声明。</p>
-<p>A） 设置编辑器编码：UTF-8</p>
-<p>B） 修改python文件编码：在py文件首行加上#coding=utf-8，一定要在首行才可以</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1156,14 +1230,14 @@ D:\6_code</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

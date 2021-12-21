@@ -57,7 +57,8 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-size: 80%; /* 2 */
+/* 修改行内代码字体大小 */
 }
 small {
   font-size: 80%;
@@ -217,7 +218,7 @@ h6 {
   font-size: 0.875em;
 }
 p {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px 0; /* 修改了底部20px为0 */
 }
 a,
 span.exturl {
@@ -1236,7 +1237,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f76700;
+  background: #ff8e91;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1586,17 +1587,17 @@ pre .javascript .function {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1em;
+    font-size: 0.875em;
   }
 }
 .post-body .exturl .fa {
-  font-size: 0.875em;
+  font-size: 0.8125em;
   margin-left: 4px;
 }
 .post-body .image-caption,
 .post-body .figure .caption {
   color: #999;
-  font-size: 0.875em;
+  font-size: 0.8125em;
   font-weight: bold;
   line-height: 1;
   margin: -20px auto 15px;
